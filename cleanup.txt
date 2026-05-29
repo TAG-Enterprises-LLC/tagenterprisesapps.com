@@ -1,4 +1,1 @@
-cd tagenterprisesapps.com
-git status
-git restore .
-git clean -fd
+
