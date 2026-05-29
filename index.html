@@ -1,179 +1,156 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TAG Enterprises LLC</title>
-
   <style>
-    * {
+    * { box-sizing: border-box; }
+    html, body {
       margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html,
-    body {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background: black;
+      min-height: 100%;
+      background: #020b12;
       font-family: Arial, Helvetica, sans-serif;
     }
-
-    body {
+    .page {
       position: relative;
+      width: min(100vw, 1024px);
+      margin: 0 auto;
+      line-height: 0;
+      box-shadow: 0 0 30px rgba(0,0,0,.6);
     }
-
-    .background {
-      position: absolute;
-      inset: 0;
+    .page img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
+      display: block;
+      user-select: none;
+      -webkit-user-drag: none;
     }
-
-    .click-area {
+    .hotspot {
       position: absolute;
+      display: block;
       cursor: pointer;
-      background: rgba(255, 255, 255, 0);
+      border-radius: 8px;
+      line-height: normal;
+      text-indent: -9999px;
+      overflow: hidden;
+      background: rgba(0, 140, 255, 0);
+    }
+    .hotspot:focus-visible {
+      outline: 3px solid #00a6ff;
+      background: rgba(0, 140, 255, .18);
     }
 
-    /* TAG_21 */
-    #tag21 {
-      left: 10%;
-      top: 27%;
-      width: 35%;
-      height: 10%;
-    }
+    /* Percent positions are based on the 1024 x 1536 main_web.png image. */
 
-    /* TAG-YZ */
-    #tagyz {
-      left: 10%;
-      top: 41%;
-      width: 35%;
-      height: 10%;
-    }
+    /* Top navigation */
+    #navGames      { left: 14.16%; top:  9.57%; width: 11.62%; height: 2.93%; }
+    #navBackground { left: 25.78%; top:  9.57%; width: 17.48%; height: 2.93%; }
+    #navSupport    { left: 43.26%; top:  9.57%; width: 14.94%; height: 2.93%; }
+    #navPrivacy    { left: 58.20%; top:  9.57%; width: 13.38%; height: 2.93%; }
+    #navContact    { left: 71.58%; top:  9.57%; width:  9.77%; height: 2.93%; }
 
-    /* Privacy */
-    #privacy {
-      right: 4%;
-      bottom: 4%;
-      width: 16%;
-      height: 7%;
-    }
+    /* Large buttons */
+    #viewGames { left: 27.73%; top: 14.13%; width: 18.26%; height: 3.06%; }
+    #musicBtn  { left: 47.85%; top: 14.13%; width: 19.92%; height: 3.06%; }
 
-    /* Music Toggle */
-    #music {
-      right: 4%;
-      bottom: 14%;
-      width: 16%;
-      height: 7%;
-    }
+    /* Background thumbnails */
+    #bgDesert      { left:  8.50%; top: 24.48%; width: 12.21%; height: 5.99%; }
+    #bgCoral       { left: 22.07%; top: 24.48%; width: 12.21%; height: 5.99%; }
+    #bgSpace       { left: 35.55%; top: 24.48%; width: 12.21%; height: 5.99%; }
+    #bgWaterfall   { left: 49.02%; top: 24.48%; width: 12.21%; height: 5.99%; }
+    #bgWildflowers { left: 62.01%; top: 24.48%; width: 12.21%; height: 5.99%; }
+    #bgWinter      { left: 75.39%; top: 24.48%; width: 12.21%; height: 5.99%; }
 
-    audio {
-      display: none;
-    }
+    /* Game cards */
+    #tag21Game  { left: 4.00%; top: 37.24%; width: 43.00%; height: 25.00%; }
+    #tagyzGame  { left: 48.50%; top: 37.24%; width: 46.20%; height: 25.00%; }
+    #mahjong    { left: 4.00%; top: 63.20%; width: 43.00%; height: 15.60%; }
+    #domino     { left: 48.50%; top: 63.20%; width: 46.20%; height: 15.60%; }
+    #cardcol    { left: 4.00%; top: 79.90%; width: 43.70%; height: 16.40%; }
   </style>
 </head>
-
 <body>
+  <main class="page" aria-label="TAG Enterprises LLC homepage">
+    <img src="main_web.png" alt="TAG Enterprises LLC website home page" />
 
-  <!-- Main Background -->
-  <img
-    src="main_web.png"
-    alt="TAG Enterprises"
-    class="background"
-  />
+    <!-- Top navigation -->
+    <a id="navGames" class="hotspot" href="#games" onclick="scrollToGames(); return false;">Games</a>
+    <a id="navBackground" class="hotspot" href="#backgrounds" onclick="scrollToBackgrounds(); return false;">Backgrounds</a>
+    <a id="navSupport" class="hotspot" href="mailto:gswiii@yahoo.com?subject=TAG%20Enterprises%20Support">Support</a>
+    <a id="navPrivacy" class="hotspot" href="tag_policy.html">Privacy</a>
+    <a id="navContact" class="hotspot" href="mailto:gswiii@yahoo.com?subject=TAG%20Enterprises%20Contact">Contact</a>
 
-  <!-- Invisible Click Areas -->
-  <div
-    id="tag21"
-    class="click-area"
-    onclick="openTag21()">
-  </div>
+    <!-- Main controls -->
+    <a id="viewGames" class="hotspot" href="#games" onclick="scrollToGames(); return false;">View Our Games</a>
+    <button id="musicBtn" class="hotspot" type="button" onclick="toggleMusic()">Play / Pause Music</button>
 
-  <div
-    id="tagyz"
-    class="click-area"
-    onclick="openTagYZ()">
-  </div>
+    <!-- Background thumbnails. These preserve the click behavior even if only this image is present. -->
+    <button id="bgDesert" class="hotspot" type="button" onclick="selectBackground('desert')">Desert Background</button>
+    <button id="bgCoral" class="hotspot" type="button" onclick="selectBackground('coral')">Coral Background</button>
+    <button id="bgSpace" class="hotspot" type="button" onclick="selectBackground('space')">Space Background</button>
+    <button id="bgWaterfall" class="hotspot" type="button" onclick="selectBackground('waterfall')">Waterfall Background</button>
+    <button id="bgWildflowers" class="hotspot" type="button" onclick="selectBackground('wildflowers')">Wildflowers Background</button>
+    <button id="bgWinter" class="hotspot" type="button" onclick="selectBackground('winter')">Winter Background</button>
 
-  <div
-    id="privacy"
-    class="click-area"
-    onclick="openPrivacy()">
-  </div>
+    <!-- Game cards -->
+    <a id="tag21Game" class="hotspot" href="tag_21/">Open TAG_21</a>
+    <a id="tagyzGame" class="hotspot" href="tag_yz/">Open TAG-YZ</a>
+    <a id="mahjong" class="hotspot" href="#" onclick="comingSoon('Mahjong Collection'); return false;">Mahjong Collection</a>
+    <a id="domino" class="hotspot" href="#" onclick="comingSoon('Domino Masters'); return false;">Domino Masters</a>
+    <a id="cardcol" class="hotspot" href="#" onclick="comingSoon('Card Collection'); return false;">Card Collection</a>
+  </main>
 
-  <div
-    id="music"
-    class="click-area"
-    onclick="toggleMusic()">
-  </div>
-
-  <!-- Background Music -->
-  <audio id="bgMusic" loop>
-    <source src="bg_track_1.mp3" type="audio/mpeg">
+  <audio id="bgMusic" preload="none" loop>
+    <source src="bg_track_3.mp3" type="audio/mpeg" />
+    <source src="assets/audio/bg_track_3.mp3" type="audio/mpeg" />
   </audio>
 
   <script>
-    let musicStarted = false;
-    let musicEnabled = false;
+    function scrollToYPercent(percent) {
+      const page = document.querySelector('.page');
+      const y = page.offsetTop + page.offsetHeight * percent;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
 
-    function ensureMusicStarted() {
-      const music = document.getElementById('bgMusic');
+    function scrollToGames() {
+      scrollToYPercent(0.33);
+    }
 
-      if (!musicStarted) {
-        music.volume = 0.4;
-
-        music.play()
-          .then(() => {
-            musicStarted = true;
-            musicEnabled = true;
-          })
-          .catch(() => {
-            console.log('Autoplay blocked until user interaction.');
-          });
-      }
+    function scrollToBackgrounds() {
+      scrollToYPercent(0.19);
     }
 
     function toggleMusic() {
       const music = document.getElementById('bgMusic');
 
-      if (!musicStarted) {
-        ensureMusicStarted();
-        return;
-      }
-
       if (music.paused) {
-        music.play();
-        musicEnabled = true;
+        music.volume = 0.45;
+        music.play().catch(() => {
+          alert('Music could not start. Make sure bg_track_3.mp3 is uploaded to the repository root or assets/audio folder.');
+        });
       } else {
         music.pause();
-        musicEnabled = false;
       }
     }
 
-    function openPrivacy() {
-      window.location.href = 'tag_policy.html';
+    function selectBackground(name) {
+      // This image-based rebuild keeps the background selection buttons active.
+      // If you later upload separate background pages/images, these can be wired here.
+      const names = {
+        desert: 'Desert Sunset',
+        coral: 'Coral Reef',
+        space: 'Space Planets',
+        waterfall: 'Waterfall Cliffs',
+        wildflowers: 'Wildflowers',
+        winter: 'Winter Forest'
+      };
+      alert(names[name] + ' is already shown in this restored image-based homepage.');
     }
 
-    function openTag21() {
-      alert('TAG_21 web version coming soon.');
+    function comingSoon(title) {
+      alert(title + ' is coming soon.');
     }
-
-    function openTagYZ() {
-      alert('TAG-YZ web version coming soon.');
-    }
-
-    document.body.addEventListener(
-      'click',
-      ensureMusicStarted,
-      { once: true }
-    );
   </script>
-
 </body>
 </html>
-```
