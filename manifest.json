@@ -1,0 +1,35 @@
+{
+    "name": "TAG_21",
+    "short_name": "TAG_21",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#031A11",
+    "theme_color": "#D6A633",
+    "description": "TAG_21 blackjack-style card game by TAG Enterprises LLC.",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-maskable-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/Icon-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}
