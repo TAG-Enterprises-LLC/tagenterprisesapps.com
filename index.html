@@ -5,101 +5,291 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TAG Enterprises LLC</title>
   <style>
+    :root {
+      --blue: #087cff;
+      --blue2: #00b7ff;
+      --panel: rgba(2, 10, 18, 0.78);
+      --panel2: rgba(0, 22, 38, 0.88);
+      --text: #ffffff;
+      --green: #24e000;
+    }
     * { box-sizing: border-box; }
     html, body {
       margin: 0;
       min-height: 100%;
-      background: #020b12;
       font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: #020b12;
     }
-    .page {
-      position: relative;
-      width: min(100vw, 1024px);
+    body {
+      background-image:
+        linear-gradient(rgba(0,0,0,.22), rgba(0,0,0,.78)),
+        url("images/desert_sunset_panorama.png");
+      background-size: cover;
+      background-position: center top;
+      background-attachment: fixed;
+      transition: background-image .35s ease-in-out;
+    }
+    .site {
+      width: min(1180px, calc(100vw - 28px));
       margin: 0 auto;
-      line-height: 0;
-      box-shadow: 0 0 30px rgba(0,0,0,.6);
+      padding: 14px 0 28px;
     }
-    .page img {
-      width: 100%;
-      height: auto;
-      display: block;
-      user-select: none;
-      -webkit-user-drag: none;
+    header {
+      text-align: center;
+      padding: 2px 10px 12px;
+      text-shadow: 0 0 12px #006cff, 0 0 20px #004dff;
     }
-    .hotspot {
-      position: absolute;
-      display: block;
-      cursor: pointer;
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 5.5vw, 62px);
+      line-height: 1.05;
+      font-weight: 800;
+    }
+    .subtitle {
+      margin: 10px auto 0;
+      max-width: 720px;
+      font-size: clamp(17px, 2.2vw, 25px);
+      line-height: 1.3;
+      text-shadow: 0 2px 4px #000;
+    }
+    nav {
+      width: min(850px, 100%);
+      margin: 14px auto 26px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      background: rgba(0, 0, 0, .54);
+      border: 1px solid rgba(75,160,255,.4);
       border-radius: 8px;
-      line-height: normal;
-      text-indent: -9999px;
       overflow: hidden;
-      background: rgba(0, 140, 255, 0);
+      box-shadow: 0 0 22px rgba(0,0,0,.55);
     }
-    .hotspot:focus-visible {
-      outline: 3px solid #00a6ff;
-      background: rgba(0, 140, 255, .18);
+    nav a, nav button {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: white;
+      font-size: clamp(14px, 1.8vw, 22px);
+      padding: 13px 8px;
+      text-decoration: none;
+      cursor: pointer;
+      text-align: center;
     }
-
-    /* Percent positions are based on the 1024 x 1536 main_web.png image. */
-
-    /* Top navigation */
-    #navGames      { left: 14.16%; top:  9.57%; width: 11.62%; height: 2.93%; }
-    #navBackground { left: 25.78%; top:  9.57%; width: 17.48%; height: 2.93%; }
-    #navSupport    { left: 43.26%; top:  9.57%; width: 14.94%; height: 2.93%; }
-    #navPrivacy    { left: 58.20%; top:  9.57%; width: 13.38%; height: 2.93%; }
-    #navContact    { left: 71.58%; top:  9.57%; width:  9.77%; height: 2.93%; }
-
-    /* Large buttons */
-    #viewGames { left: 27.73%; top: 14.13%; width: 18.26%; height: 3.06%; }
-    #musicBtn  { left: 47.85%; top: 14.13%; width: 19.92%; height: 3.06%; }
-
-    /* Background thumbnails */
-    #bgDesert      { left:  8.50%; top: 24.48%; width: 12.21%; height: 5.99%; }
-    #bgCoral       { left: 22.07%; top: 24.48%; width: 12.21%; height: 5.99%; }
-    #bgSpace       { left: 35.55%; top: 24.48%; width: 12.21%; height: 5.99%; }
-    #bgWaterfall   { left: 49.02%; top: 24.48%; width: 12.21%; height: 5.99%; }
-    #bgWildflowers { left: 62.01%; top: 24.48%; width: 12.21%; height: 5.99%; }
-    #bgWinter      { left: 75.39%; top: 24.48%; width: 12.21%; height: 5.99%; }
-
-    /* Game cards */
-    #tag21Game  { left: 4.00%; top: 37.24%; width: 43.00%; height: 25.00%; }
-    #tagyzGame  { left: 48.50%; top: 37.24%; width: 46.20%; height: 25.00%; }
-    #mahjong    { left: 4.00%; top: 63.20%; width: 43.00%; height: 15.60%; }
-    #domino     { left: 48.50%; top: 63.20%; width: 46.20%; height: 15.60%; }
-    #cardcol    { left: 4.00%; top: 79.90%; width: 43.70%; height: 16.40%; }
+    nav a:hover, nav button:hover, nav .active {
+      background: linear-gradient(#005ccf, #003c83);
+      color: #7fd0ff;
+    }
+    .top-actions {
+      display: flex;
+      justify-content: center;
+      gap: 22px;
+      flex-wrap: wrap;
+      margin: 0 0 16px;
+    }
+    .primary-btn {
+      appearance: none;
+      border: 1px solid #1db7ff;
+      border-radius: 8px;
+      background: linear-gradient(#0b8bff, #0057d6);
+      color: white;
+      font-weight: 700;
+      font-size: clamp(16px, 2vw, 22px);
+      padding: 14px 32px;
+      cursor: pointer;
+      box-shadow: 0 0 16px rgba(0,85,255,.55);
+      text-decoration: none;
+      display: inline-block;
+    }
+    .primary-btn:hover { filter: brightness(1.12); }
+    #playingLabel {
+      text-align: center;
+      font-size: clamp(16px, 2vw, 22px);
+      color: #c7f7ff;
+      margin: 10px 0 24px;
+      text-shadow: 0 2px 4px #000;
+    }
+    .background-panel {
+      width: min(980px, 100%);
+      margin: 0 auto 26px;
+      padding: 22px 20px;
+      background: var(--panel);
+      border: 1px solid rgba(67,160,255,.45);
+      border-radius: 12px;
+      box-shadow: 0 0 24px rgba(0,0,0,.65);
+      text-align: center;
+    }
+    .background-panel h2 {
+      margin: 0 0 18px;
+      font-size: clamp(18px, 2.1vw, 24px);
+    }
+    .thumb-row {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 14px;
+    }
+    .thumb {
+      appearance: none;
+      border: 2px solid rgba(120,210,255,.75);
+      padding: 0;
+      border-radius: 8px;
+      background: transparent;
+      overflow: hidden;
+      cursor: pointer;
+      height: 78px;
+      box-shadow: 0 3px 8px rgba(0,0,0,.55);
+    }
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .thumb.selected {
+      border-color: #00ff35;
+      box-shadow: 0 0 14px #00ff35;
+    }
+    .section-title {
+      text-align: center;
+      color: #39a0ff;
+      font-size: clamp(28px, 3.3vw, 38px);
+      margin: 12px 0 22px;
+      text-shadow: 0 0 8px #001a60;
+    }
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 90px;
+      height: 4px;
+      margin: 10px auto 0;
+      background: #22a8ff;
+      box-shadow: 0 0 10px #22a8ff;
+      border-radius: 8px;
+    }
+    .games-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .game-card {
+      min-height: 220px;
+      display: grid;
+      grid-template-columns: 44% 1fr;
+      gap: 20px;
+      padding: 14px;
+      background: var(--panel2);
+      border: 1px solid rgba(73,168,255,.35);
+      border-radius: 10px;
+      box-shadow: 0 0 18px rgba(0,0,0,.42);
+      text-decoration: none;
+      color: white;
+    }
+    .game-card:hover {
+      border-color: #3eb3ff;
+      box-shadow: 0 0 22px rgba(0,125,255,.52);
+      transform: translateY(-1px);
+    }
+    .game-card img {
+      width: 100%;
+      height: 100%;
+      min-height: 190px;
+      object-fit: cover;
+      border-radius: 7px;
+      border: 1px solid rgba(255,255,255,.25);
+    }
+    .game-card h3 {
+      margin: 18px 0 12px;
+      font-size: clamp(26px, 3vw, 36px);
+    }
+    .game-card p {
+      margin: 0;
+      font-size: clamp(16px, 1.8vw, 22px);
+      line-height: 1.45;
+    }
+    .status {
+      display: block;
+      margin-top: 14px;
+      color: var(--green);
+      font-size: clamp(17px, 2vw, 24px);
+      font-weight: 700;
+    }
+    footer {
+      text-align: center;
+      margin: 32px 0 0;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,.18);
+      font-size: 16px;
+      text-shadow: 0 2px 4px #000;
+    }
+    @media (max-width: 760px) {
+      nav { grid-template-columns: 1fr; }
+      .thumb-row { grid-template-columns: repeat(2, 1fr); }
+      .games-grid { grid-template-columns: 1fr; }
+      .game-card { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
-  <main class="page" aria-label="TAG Enterprises LLC homepage">
-    <img src="images/main_web.png" alt="TAG Enterprises LLC website home page" />
+  <div class="site">
+    <header>
+      <h1>TAG Enterprises LLC</h1>
+      <p class="subtitle">Independent mobile game development studio creating polished, engaging, and visually exciting games for Android devices.</p>
+    </header>
 
-    <!-- Top navigation -->
-    <a id="navGames" class="hotspot" href="#games" onclick="scrollToGames(); return false;">Games</a>
-    <a id="navBackground" class="hotspot" href="#backgrounds" onclick="scrollToBackgrounds(); return false;">Backgrounds</a>
-    <a id="navSupport" class="hotspot" href="mailto:gswiii@yahoo.com?subject=TAG%20Enterprises%20Support">Support</a>
-    <a id="navPrivacy" class="hotspot" href="tag_policy.html">Privacy</a>
-    <a id="navContact" class="hotspot" href="mailto:gswiii@yahoo.com?subject=TAG%20Enterprises%20Contact">Contact</a>
+    <nav>
+      <button class="active" type="button" onclick="scrollToGames()">Games</button>
+      <button type="button" onclick="scrollToBackgrounds()">Backgrounds</button>
+      <a href="mailto:gswiii@yahoo.com?subject=TAG%20Enterprises%20Support">Support</a>
+      <a href="tag_policy.html">Privacy</a>
+      <a href="mailto:gswiii@yahoo.com?subject=TAG%20Enterprises%20Contact">Contact</a>
+    </nav>
 
-    <!-- Main controls -->
-    <a id="viewGames" class="hotspot" href="#games" onclick="scrollToGames(); return false;">View Our Games</a>
-    <button id="musicBtn" class="hotspot" type="button" onclick="toggleMusic()">Play / Pause Music</button>
+    <div class="top-actions">
+      <button class="primary-btn" type="button" onclick="scrollToGames()">View Our Games</button>
+      <button class="primary-btn" type="button" onclick="toggleMusic()">Play / Pause Music</button>
+    </div>
 
-    <!-- Background thumbnails. These preserve the click behavior even if only this image is present. -->
-    <button id="bgDesert" class="hotspot" type="button" onclick="selectBackground('desert')">Desert Background</button>
-    <button id="bgCoral" class="hotspot" type="button" onclick="selectBackground('coral')">Coral Background</button>
-    <button id="bgSpace" class="hotspot" type="button" onclick="selectBackground('space')">Space Background</button>
-    <button id="bgWaterfall" class="hotspot" type="button" onclick="selectBackground('waterfall')">Waterfall Background</button>
-    <button id="bgWildflowers" class="hotspot" type="button" onclick="selectBackground('wildflowers')">Wildflowers Background</button>
-    <button id="bgWinter" class="hotspot" type="button" onclick="selectBackground('winter')">Winter Background</button>
+    <div id="playingLabel">♫ Playing: BG TRACK 3</div>
 
-    <!-- Game cards -->
-    <a id="tag21Game" class="hotspot" href="tag_21/">Open TAG_21</a>
-    <a id="tagyzGame" class="hotspot" href="tag_yz/">Open TAG-YZ</a>
-    <a id="mahjong" class="hotspot" href="#" onclick="comingSoon('Mahjong Collection'); return false;">Mahjong Collection</a>
-    <a id="domino" class="hotspot" href="#" onclick="comingSoon('Domino Masters'); return false;">Domino Masters</a>
-    <a id="cardcol" class="hotspot" href="#" onclick="comingSoon('Card Collection'); return false;">Card Collection</a>
-  </main>
+    <section id="backgrounds" class="background-panel">
+      <h2>Choose Website Background</h2>
+      <div class="thumb-row">
+        <button id="thumbDesert" class="thumb selected" type="button" onclick="selectBackground('desert')"><img src="images/desert_sunset_panorama.png" alt="Desert Sunset" /></button>
+        <button id="thumbCoral" class="thumb" type="button" onclick="selectBackground('coral')"><img src="images/coral_reef_panorama.png" alt="Coral Reef" /></button>
+        <button id="thumbSpace" class="thumb" type="button" onclick="selectBackground('space')"><img src="images/space_planets_panorama.png" alt="Space Planets" /></button>
+        <button id="thumbWaterfall" class="thumb" type="button" onclick="selectBackground('waterfall')"><img src="images/waterfall_cliffs_panorama.png" alt="Waterfall Cliffs" /></button>
+        <button id="thumbWildflowers" class="thumb" type="button" onclick="selectBackground('wildflowers')"><img src="images/wildflowers_panorama.png" alt="Wildflowers" /></button>
+        <button id="thumbWinter" class="thumb" type="button" onclick="selectBackground('winter')"><img src="images/winter_forest_panorama.png" alt="Winter Forest" /></button>
+      </div>
+    </section>
+
+    <main id="games">
+      <h2 class="section-title">Featured Games</h2>
+      <div class="games-grid">
+        <a class="game-card" href="tag_21/">
+          <img src="images/tag_21_screenshot.jpg" alt="TAG_21 screenshot" />
+          <div><h3>TAG_21</h3><p>A classic 21 card game with smooth gameplay, clean design, and exciting dealer challenges. Test your strategy, beat the dealer, and aim for the perfect hand!</p><span class="status">Android Release<br />In Development</span></div>
+        </a>
+        <a class="game-card" href="tag_yz/">
+          <img src="images/tagyz_screenshot.jpg" alt="TAG-YZ screenshot" />
+          <div><h3>TAG-YZ</h3><p>A modern dice strategy game inspired by classic familiar gameplay, featuring enhanced scoring systems, robot opponents, polished visual effects, dynamic audio, and exciting bonus celebrations.</p><span class="status">Android Release<br />In Development</span></div>
+        </a>
+        <a class="game-card" href="#" onclick="comingSoon('Mahjong Collection'); return false;">
+          <img src="images/ChatGPT Image May 12, 2026, 06_07_01 PM.png" alt="Mahjong Collection preview" />
+          <div><h3>Mahjong Collection</h3><p>A premium Mahjong experience featuring glossy 3D tiles, beautiful visual themes, relaxing gameplay, and modern mobile-friendly design.</p><span class="status">Coming Soon</span></div>
+        </a>
+        <a class="game-card" href="#" onclick="comingSoon('Domino Masters'); return false;">
+          <img src="images/ChatGPT Image May 12, 2026, 06_07_01 PM.png" alt="Domino Masters preview" />
+          <div><h3>Domino Masters</h3><p>Competitive and casual domino gameplay with sleek visuals, customizable themes, AI opponents, and online-ready architecture.</p><span class="status">Coming Soon</span></div>
+        </a>
+        <a class="game-card" href="#" onclick="comingSoon('Card Collection'); return false;">
+          <img src="images/ChatGPT Image May 12, 2026, 06_07_01 PM.png" alt="Card Collection preview" />
+          <div><h3>Card Collection</h3><p>A growing collection of polished mobile card games featuring glossy animated playing cards, customizable themes, smooth gameplay, intelligent AI opponents, and modern mobile-friendly interfaces.</p><span class="status">Coming Soon</span></div>
+        </a>
+      </div>
+    </main>
+
+    <footer>© 2026 TAG Enterprises LLC. All rights reserved.</footer>
+  </div>
 
   <audio id="bgMusic" preload="none" loop>
     <source src="bg_track_3.mp3" type="audio/mpeg" />
@@ -107,49 +297,62 @@
   </audio>
 
   <script>
-    function scrollToYPercent(percent) {
-      const page = document.querySelector('.page');
-      const y = page.offsetTop + page.offsetHeight * percent;
-      window.scrollTo({ top: y, behavior: 'smooth' });
+    const backgrounds = {
+      desert: "images/desert_sunset_panorama.png",
+      coral: "images/coral_reef_panorama.png",
+      space: "images/space_planets_panorama.png",
+      waterfall: "images/waterfall_cliffs_panorama.png",
+      wildflowers: "images/wildflowers_panorama.png",
+      winter: "images/winter_forest_panorama.png"
+    };
+
+    const thumbIds = {
+      desert: "thumbDesert",
+      coral: "thumbCoral",
+      space: "thumbSpace",
+      waterfall: "thumbWaterfall",
+      wildflowers: "thumbWildflowers",
+      winter: "thumbWinter"
+    };
+
+    function selectBackground(name) {
+      const image = backgrounds[name];
+      if (!image) return;
+
+      document.body.style.backgroundImage =
+        'linear-gradient(rgba(0,0,0,.22), rgba(0,0,0,.78)), url("' + image + '")';
+
+      Object.values(thumbIds).forEach(function(id) {
+        const el = document.getElementById(id);
+        if (el) el.classList.remove("selected");
+      });
+
+      const selected = document.getElementById(thumbIds[name]);
+      if (selected) selected.classList.add("selected");
     }
 
     function scrollToGames() {
-      scrollToYPercent(0.33);
+      document.getElementById("games").scrollIntoView({ behavior: "smooth" });
     }
 
     function scrollToBackgrounds() {
-      scrollToYPercent(0.19);
+      document.getElementById("backgrounds").scrollIntoView({ behavior: "smooth" });
     }
 
     function toggleMusic() {
-      const music = document.getElementById('bgMusic');
-
+      const music = document.getElementById("bgMusic");
       if (music.paused) {
         music.volume = 0.45;
-        music.play().catch(() => {
-          alert('Music could not start. Make sure bg_track_3.mp3 is uploaded to the repository root or assets/audio folder.');
+        music.play().catch(function() {
+          alert("Music could not start. Confirm bg_track_3.mp3 exists in the repository root or assets/audio folder.");
         });
       } else {
         music.pause();
       }
     }
 
-    function selectBackground(name) {
-      // This image-based rebuild keeps the background selection buttons active.
-      // If you later upload separate background pages/images, these can be wired here.
-      const names = {
-        desert: 'Desert Sunset',
-        coral: 'Coral Reef',
-        space: 'Space Planets',
-        waterfall: 'Waterfall Cliffs',
-        wildflowers: 'Wildflowers',
-        winter: 'Winter Forest'
-      };
-      alert(names[name] + ' is already shown in this restored image-based homepage.');
-    }
-
     function comingSoon(title) {
-      alert(title + ' is coming soon.');
+      alert(title + " is coming soon.");
     }
   </script>
 </body>
