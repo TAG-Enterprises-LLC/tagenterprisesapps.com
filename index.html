@@ -24,29 +24,18 @@
       min-height: 100%;
       font-family: Arial, Helvetica, sans-serif;
       color: var(--text);
-      background: #020b12;
+      background-color: #020b12;
     }
 
     body {
       overflow-x: hidden;
-    }
-
-    #siteBackground {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -2;
-      transition: opacity 0.25s ease-in-out;
-    }
-
-    #backgroundDimmer {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      background: linear-gradient(rgba(0, 0, 0, 0.20), rgba(0, 0, 0, 0.78));
-      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.75)),
+        url("images/desert_sunset_panorama.png");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
     }
 
     .site {
@@ -182,7 +171,7 @@
       overflow: hidden;
       cursor: pointer;
       height: 78px;
-      box-shadow: 0 3px 8px rgba(0,0,0,.55);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, .55);
     }
 
     .thumb img {
@@ -249,7 +238,7 @@
       min-height: 190px;
       object-fit: cover;
       border-radius: 7px;
-      border: 1px solid rgba(255,255,255,.25);
+      border: 1px solid rgba(255, 255, 255, .25);
     }
 
     .game-card h3 {
@@ -275,7 +264,7 @@
       text-align: center;
       margin: 32px 0 0;
       padding-top: 18px;
-      border-top: 1px solid rgba(255,255,255,.18);
+      border-top: 1px solid rgba(255, 255, 255, .18);
       font-size: 16px;
       text-shadow: 0 2px 4px #000;
     }
@@ -301,9 +290,6 @@
 </head>
 
 <body>
-  <img id="siteBackground" src="images/desert_sunset_panorama.png" alt="" />
-  <div id="backgroundDimmer"></div>
-
   <div class="site">
     <header>
       <h1>TAG Enterprises LLC</h1>
@@ -325,27 +311,33 @@
       <button class="primary-btn" type="button" onclick="toggleMusic()">Play / Pause Music</button>
     </div>
 
-    <div id="playingLabel">♫ Playing: BG TRACK 3</div>
+    <div id="playingLabel">Music ready</div>
     <div id="backgroundStatus">Current background: Desert Sunset</div>
 
     <section id="backgrounds" class="background-panel">
       <h2>Choose Website Background</h2>
+
       <div class="thumb-row">
         <button id="thumbDesert" class="thumb selected" type="button" onclick="selectBackground('desert')">
           <img src="images/desert_sunset_panorama.png" alt="Desert Sunset" />
         </button>
+
         <button id="thumbCoral" class="thumb" type="button" onclick="selectBackground('coral')">
           <img src="images/coral_reef_panorama.png" alt="Coral Reef" />
         </button>
+
         <button id="thumbSpace" class="thumb" type="button" onclick="selectBackground('space')">
           <img src="images/space_planets_panorama.png" alt="Space Planets" />
         </button>
+
         <button id="thumbWaterfall" class="thumb" type="button" onclick="selectBackground('waterfall')">
           <img src="images/waterfall_cliffs_panorama.png" alt="Waterfall Cliffs" />
         </button>
+
         <button id="thumbWildflowers" class="thumb" type="button" onclick="selectBackground('wildflowers')">
           <img src="images/wildflowers_panorama.png" alt="Wildflowers" />
         </button>
+
         <button id="thumbWinter" class="thumb" type="button" onclick="selectBackground('winter')">
           <img src="images/winter_forest_panorama.png" alt="Winter Forest" />
         </button>
@@ -360,7 +352,10 @@
           <img src="images/tag_21_screenshot.jpg" alt="TAG_21 screenshot" />
           <div>
             <h3>TAG_21</h3>
-            <p>A classic 21 card game with smooth gameplay, clean design, and exciting dealer challenges. Test your strategy, beat the dealer, and aim for the perfect hand!</p>
+            <p>
+              A classic 21 card game with smooth gameplay, clean design, and exciting dealer challenges.
+              Test your strategy, beat the dealer, and aim for the perfect hand!
+            </p>
             <span class="status">Android Release<br />In Development</span>
           </div>
         </a>
@@ -369,7 +364,10 @@
           <img src="images/tagyz_screenshot.jpg" alt="TAG-YZ screenshot" />
           <div>
             <h3>TAG-YZ</h3>
-            <p>A modern dice strategy game inspired by classic familiar gameplay, featuring enhanced scoring systems, robot opponents, polished visual effects, dynamic audio, and exciting bonus celebrations.</p>
+            <p>
+              A modern dice strategy game inspired by classic familiar gameplay, featuring enhanced scoring systems,
+              robot opponents, polished visual effects, dynamic audio, and exciting bonus celebrations.
+            </p>
             <span class="status">Android Release<br />In Development</span>
           </div>
         </a>
@@ -378,7 +376,10 @@
           <img src="images/ChatGPT Image May 12, 2026, 06_07_01 PM.png" alt="Mahjong Collection preview" />
           <div>
             <h3>Mahjong Collection</h3>
-            <p>A premium Mahjong experience featuring glossy 3D tiles, beautiful visual themes, relaxing gameplay, and modern mobile-friendly design.</p>
+            <p>
+              A premium Mahjong experience featuring glossy 3D tiles, beautiful visual themes,
+              relaxing gameplay, and modern mobile-friendly design.
+            </p>
             <span class="status">Coming Soon</span>
           </div>
         </a>
@@ -387,7 +388,10 @@
           <img src="images/ChatGPT Image May 12, 2026, 06_07_01 PM.png" alt="Domino Masters preview" />
           <div>
             <h3>Domino Masters</h3>
-            <p>Competitive and casual domino gameplay with sleek visuals, customizable themes, AI opponents, and online-ready architecture.</p>
+            <p>
+              Competitive and casual domino gameplay with sleek visuals, customizable themes,
+              AI opponents, and online-ready architecture.
+            </p>
             <span class="status">Coming Soon</span>
           </div>
         </a>
@@ -396,7 +400,10 @@
           <img src="images/ChatGPT Image May 12, 2026, 06_07_01 PM.png" alt="Card Collection preview" />
           <div>
             <h3>Card Collection</h3>
-            <p>A growing collection of polished mobile card games featuring glossy animated playing cards, customizable themes, smooth gameplay, intelligent AI opponents, and modern mobile-friendly interfaces.</p>
+            <p>
+              A growing collection of polished mobile card games featuring glossy animated playing cards,
+              customizable themes, smooth gameplay, intelligent AI opponents, and modern mobile-friendly interfaces.
+            </p>
             <span class="status">Coming Soon</span>
           </div>
         </a>
@@ -408,9 +415,7 @@
     </footer>
   </div>
 
-  <audio id="bgMusic" preload="none" loop>
-    <source src="audio/bg_track_3.mp3" type="audio/mpeg" />
-  </audio>
+  <audio id="bgMusic" preload="auto"></audio>
 
   <script>
     const backgrounds = {
@@ -446,22 +451,41 @@
       }
     };
 
+    const musicTracks = [
+      "audio/bg_track_2.mp3",
+      "audio/bg_track_3.mp3",
+      "audio/bg_track_4.mp3",
+      "audio/bg_track_5.mp3",
+      "audio/bg_track_6.mp3",
+      "audio/bg_track_7.mp3",
+      "audio/bg_track_8.mp3",
+      "audio/bg_track_9.mp3"
+    ];
+
+    let shuffledPlaylist = [];
+    let playlistIndex = 0;
+    let lastPlayedTrack = null;
+    let musicInitialized = false;
+
+    function applyBackground(imagePath) {
+      document.body.style.backgroundImage =
+        "linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.75)), url('" + imagePath + "')";
+      document.body.style.backgroundSize = "cover";
+      document.body.style.backgroundPosition = "center";
+      document.body.style.backgroundAttachment = "fixed";
+      document.body.style.backgroundRepeat = "no-repeat";
+    }
+
     function selectBackground(name) {
       const choice = backgrounds[name];
-      const backgroundImage = document.getElementById("siteBackground");
-      const backgroundStatus = document.getElementById("backgroundStatus");
 
-      if (!choice || !backgroundImage) {
+      if (!choice) {
         return;
       }
 
-      backgroundImage.style.opacity = "0.35";
+      applyBackground(choice.image);
 
-      setTimeout(function() {
-        backgroundImage.src = choice.image;
-        backgroundImage.alt = choice.label;
-        backgroundImage.style.opacity = "1";
-      }, 120);
+      const backgroundStatus = document.getElementById("backgroundStatus");
 
       if (backgroundStatus) {
         backgroundStatus.textContent = "Current background: " + choice.label;
@@ -469,69 +493,210 @@
 
       Object.keys(backgrounds).forEach(function(key) {
         const thumb = document.getElementById(backgrounds[key].thumbId);
-        if (thumb) thumb.classList.remove("selected");
+
+        if (thumb) {
+          thumb.classList.remove("selected");
+        }
       });
 
       const selectedThumb = document.getElementById(choice.thumbId);
-      if (selectedThumb) selectedThumb.classList.add("selected");
+
+      if (selectedThumb) {
+        selectedThumb.classList.add("selected");
+      }
 
       try {
         localStorage.setItem("tagSelectedBackground", name);
       } catch (e) {
-        // localStorage may be unavailable in some browser privacy modes.
+        console.log(e);
       }
     }
 
     function restoreSavedBackground() {
       try {
         const saved = localStorage.getItem("tagSelectedBackground");
+
         if (saved && backgrounds[saved]) {
           selectBackground(saved);
+        } else {
+          selectBackground("desert");
         }
       } catch (e) {
-        // Safe to ignore.
+        selectBackground("desert");
       }
     }
 
-    function scrollToGames() {
-      document.getElementById("games").scrollIntoView({ behavior: "smooth" });
+    function shuffleTracks(sourceTracks) {
+      const tracks = sourceTracks.slice();
+
+      for (let i = tracks.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const temp = tracks[i];
+
+        tracks[i] = tracks[j];
+        tracks[j] = temp;
+      }
+
+      if (tracks.length > 1 && lastPlayedTrack && tracks[0] === lastPlayedTrack) {
+        const temp = tracks[0];
+
+        tracks[0] = tracks[1];
+        tracks[1] = temp;
+      }
+
+      return tracks;
     }
 
-    function scrollToBackgrounds() {
-      document.getElementById("backgrounds").scrollIntoView({ behavior: "smooth" });
+    function trackLabel(trackPath) {
+      return trackPath
+        .replace("audio/", "")
+        .replace(".mp3", "")
+        .replace("bg_track_", "BG TRACK ");
+    }
+
+    function preparePlaylistIfNeeded() {
+      if (shuffledPlaylist.length === 0 || playlistIndex >= shuffledPlaylist.length) {
+        shuffledPlaylist = shuffleTracks(musicTracks);
+        playlistIndex = 0;
+      }
+    }
+
+    function playCurrentTrack() {
+      const music = document.getElementById("bgMusic");
+      const label = document.getElementById("playingLabel");
+
+      if (!music) {
+        alert("Music player was not found.");
+        return;
+      }
+
+      preparePlaylistIfNeeded();
+
+      const track = shuffledPlaylist[playlistIndex];
+
+      music.volume = 0.45;
+      music.src = track;
+
+      if (label) {
+        label.textContent = "Loading: " + trackLabel(track);
+      }
+
+      music.play()
+        .then(function() {
+          lastPlayedTrack = track;
+
+          if (label) {
+            label.textContent = "♫ Playing: " + trackLabel(track);
+          }
+        })
+        .catch(function(error) {
+          console.log(error);
+
+          if (label) {
+            label.textContent = "Unable to play: " + trackLabel(track);
+          }
+
+          alert("Music could not start. Confirm this file exists: " + track);
+        });
+    }
+
+    function playNextTrack() {
+      playlistIndex++;
+
+      if (playlistIndex >= shuffledPlaylist.length) {
+        shuffledPlaylist = shuffleTracks(musicTracks);
+        playlistIndex = 0;
+      }
+
+      playCurrentTrack();
+    }
+
+    function initializeMusicPlayer() {
+      if (musicInitialized) {
+        return;
+      }
+
+      const music = document.getElementById("bgMusic");
+
+      if (!music) {
+        return;
+      }
+
+      music.addEventListener("ended", playNextTrack);
+      musicInitialized = true;
     }
 
     function toggleMusic() {
       const music = document.getElementById("bgMusic");
       const label = document.getElementById("playingLabel");
 
+      initializeMusicPlayer();
+
       if (!music) {
-        alert("Music player was not found on this page.");
+        alert("Music player was not found.");
         return;
       }
 
-      if (music.paused) {
-        music.volume = 0.45;
-        music.play()
-          .then(function() {
-            if (label) label.textContent = "♫ Playing: BG TRACK 3";
-          })
-          .catch(function(error) {
-            if (label) label.textContent = "Music stopped";
-            alert("Music could not start. Confirm this file exists exactly: audio/bg_track_3.mp3");
-            console.log(error);
-          });
-      } else {
+      if (!music.paused) {
         music.pause();
-        if (label) label.textContent = "Music paused";
+
+        if (label) {
+          label.textContent = "Music paused";
+        }
+
+        return;
       }
+
+      if (!music.src) {
+        shuffledPlaylist = shuffleTracks(musicTracks);
+        playlistIndex = 0;
+        playCurrentTrack();
+        return;
+      }
+
+      music.play()
+        .then(function() {
+          if (label) {
+            const currentTrack = music.currentSrc
+              .split("/")
+              .pop()
+              .replace(".mp3", "")
+              .replace("bg_track_", "BG TRACK ");
+
+            label.textContent = "♫ Playing: " + currentTrack;
+          }
+        })
+        .catch(function(error) {
+          console.log(error);
+
+          if (label) {
+            label.textContent = "Music stopped";
+          }
+
+          alert("The browser refused to resume music. Click Play / Pause Music again and make sure the tab is not muted.");
+        });
+    }
+
+    function scrollToGames() {
+      document.getElementById("games").scrollIntoView({
+        behavior: "smooth"
+      });
+    }
+
+    function scrollToBackgrounds() {
+      document.getElementById("backgrounds").scrollIntoView({
+        behavior: "smooth"
+      });
     }
 
     function comingSoon(title) {
       alert(title + " is coming soon.");
     }
 
-    window.addEventListener("DOMContentLoaded", restoreSavedBackground);
+    window.addEventListener("DOMContentLoaded", function() {
+      initializeMusicPlayer();
+      restoreSavedBackground();
+    });
   </script>
 </body>
 </html>
