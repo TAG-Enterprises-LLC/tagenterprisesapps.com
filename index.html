@@ -409,8 +409,7 @@
   </div>
 
   <audio id="bgMusic" preload="none" loop>
-    <source src="bg_track_3.mp3" type="audio/mpeg" />
-    <source src="assets/audio/bg_track_3.mp3" type="audio/mpeg" />
+    <source src="audio/bg_track_3.mp3" type="audio/mpeg" />
   </audio>
 
   <script>
@@ -504,14 +503,27 @@
 
     function toggleMusic() {
       const music = document.getElementById("bgMusic");
+      const label = document.getElementById("playingLabel");
+
+      if (!music) {
+        alert("Music player was not found on this page.");
+        return;
+      }
 
       if (music.paused) {
         music.volume = 0.45;
-        music.play().catch(function() {
-          alert("Music could not start. Confirm bg_track_3.mp3 exists in the repository root or assets/audio folder.");
-        });
+        music.play()
+          .then(function() {
+            if (label) label.textContent = "♫ Playing: BG TRACK 3";
+          })
+          .catch(function(error) {
+            if (label) label.textContent = "Music stopped";
+            alert("Music could not start. Confirm this file exists exactly: audio/bg_track_3.mp3");
+            console.log(error);
+          });
       } else {
         music.pause();
+        if (label) label.textContent = "Music paused";
       }
     }
 
