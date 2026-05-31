@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>TAG Enterprises LLC</title>
 
   <style>
+
     :root {
       --panel: rgba(2, 10, 18, 0.82);
       --text: #ffffff;
@@ -30,6 +32,8 @@
       background-position: center;
       background-attachment: fixed;
       background-repeat: no-repeat;
+
+      transition: background-image 0.4s ease;
     }
 
     .site {
@@ -53,6 +57,94 @@
       margin-top: 12px;
       font-size: clamp(18px, 2vw, 24px);
       color: #d8f4ff;
+    }
+
+    .controls-panel {
+      background: var(--panel);
+      border: 1px solid rgba(90, 180, 255, 0.45);
+      border-radius: 12px;
+      padding: 22px;
+      margin-bottom: 30px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.45);
+    }
+
+    .controls-panel h2 {
+      margin-top: 0;
+      text-align: center;
+      color: #6cc8ff;
+      font-size: 34px;
+    }
+
+    .music-controls {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .music-button {
+      border: none;
+      border-radius: 8px;
+
+      padding: 14px 30px;
+
+      font-size: 20px;
+      font-weight: bold;
+
+      color: white;
+
+      background: linear-gradient(#008cff, #0052cc);
+
+      cursor: pointer;
+
+      box-shadow: 0 0 12px rgba(0, 102, 255, 0.5);
+    }
+
+    .music-button:hover {
+      filter: brightness(1.12);
+    }
+
+    #musicStatus {
+      margin-top: 12px;
+      color: #d7f4ff;
+      font-size: 18px;
+    }
+
+    .background-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+    }
+
+    .background-thumb {
+      border: 3px solid rgba(255,255,255,0.2);
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      background: rgba(0,0,0,0.35);
+    }
+
+    .background-thumb:hover {
+      transform: scale(1.03);
+      border-color: #3eb3ff;
+    }
+
+    .background-thumb.selected {
+      border-color: #00ff48;
+      box-shadow: 0 0 18px #00ff48;
+    }
+
+    .background-thumb img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .background-label {
+      text-align: center;
+      padding: 10px;
+      font-size: 16px;
+      color: #e8f8ff;
     }
 
     .section-title {
@@ -131,6 +223,7 @@
     }
 
     @media (max-width: 850px) {
+
       .game-card {
         grid-template-columns: 1fr;
       }
@@ -139,6 +232,7 @@
         min-height: 200px;
       }
     }
+
   </style>
 </head>
 
@@ -147,18 +241,113 @@
   <div class="site">
 
     <header>
+
       <h1>TAG Enterprises LLC</h1>
 
       <div class="subtitle">
         Independent mobile game development studio creating polished and visually exciting games.
       </div>
+
     </header>
+
+    <!-- MUSIC + BACKGROUND SECTION -->
+
+    <div class="controls-panel">
+
+      <h2>Website Controls</h2>
+
+      <div class="music-controls">
+
+        <button class="music-button" onclick="toggleMusic()">
+          Play / Pause Music
+        </button>
+
+        <div id="musicStatus">
+          Music Ready
+        </div>
+
+      </div>
+
+      <div class="background-grid">
+
+        <div class="background-thumb selected"
+             onclick="setBackground(this, 'images/desert_sunset_panorama.png')">
+
+          <img src="images/desert_sunset_panorama.png" alt="Desert Sunset" />
+
+          <div class="background-label">
+            Desert Sunset
+          </div>
+
+        </div>
+
+        <div class="background-thumb"
+             onclick="setBackground(this, 'images/coral_reef_panorama.png')">
+
+          <img src="images/coral_reef_panorama.png" alt="Coral Reef" />
+
+          <div class="background-label">
+            Coral Reef
+          </div>
+
+        </div>
+
+        <div class="background-thumb"
+             onclick="setBackground(this, 'images/space_planets_panorama.png')">
+
+          <img src="images/space_planets_panorama.png" alt="Space Planets" />
+
+          <div class="background-label">
+            Space Planets
+          </div>
+
+        </div>
+
+        <div class="background-thumb"
+             onclick="setBackground(this, 'images/waterfall_cliffs_panorama.png')">
+
+          <img src="images/waterfall_cliffs_panorama.png" alt="Waterfall Cliffs" />
+
+          <div class="background-label">
+            Waterfall Cliffs
+          </div>
+
+        </div>
+
+        <div class="background-thumb"
+             onclick="setBackground(this, 'images/wildflowers_panorama.png')">
+
+          <img src="images/wildflowers_panorama.png" alt="Wildflowers" />
+
+          <div class="background-label">
+            Wildflowers
+          </div>
+
+        </div>
+
+        <div class="background-thumb"
+             onclick="setBackground(this, 'images/winter_forest_panorama.png')">
+
+          <img src="images/winter_forest_panorama.png" alt="Winter Forest" />
+
+          <div class="background-label">
+            Winter Forest
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- GAMES -->
 
     <h2 class="section-title">Featured Games</h2>
 
     <div class="games-grid">
 
       <!-- TAG_21 -->
+
       <div class="game-card">
 
         <img
@@ -171,11 +360,11 @@
           <h2>TAG_21</h2>
 
           <p>
-            TAG_21 is a polished and feature-rich blackjack experience designed for Android devices.
-            The game features smooth gameplay, intelligent dealer logic, customizable backgrounds,
-            realistic casino-style presentation, multiplayer support, robot opponents,
-            music playlists, chip-based betting systems, insurance handling,
-            animated game flow, and a visually immersive casino atmosphere.
+            TAG_21 is a polished blackjack experience designed for Android devices.
+            The game features smooth gameplay, intelligent dealer logic,
+            multiplayer support, robot opponents, customizable backgrounds,
+            realistic casino-style presentation, chip betting systems,
+            insurance handling, and immersive audio.
           </p>
 
           <div class="status">
@@ -183,9 +372,11 @@
           </div>
 
         </div>
+
       </div>
 
       <!-- TAG_Holdem -->
+
       <div class="game-card">
 
         <img
@@ -198,10 +389,10 @@
           <h2>TAG_Holdem</h2>
 
           <p>
-            TAG_Holdem delivers a modern Texas Hold’em poker experience with advanced robot AI,
-            betting strategy systems, immersive table layouts, detailed hand tracking,
-            community card gameplay, animated table flow, player statistics,
-            and a clean professional casino presentation optimized for mobile devices.
+            TAG_Holdem delivers a modern Texas Hold’em poker experience with
+            advanced robot AI, betting strategy systems, immersive table layouts,
+            animated gameplay flow, hand tracking, community card gameplay,
+            and a polished mobile casino presentation.
           </p>
 
           <div class="status">
@@ -209,9 +400,11 @@
           </div>
 
         </div>
+
       </div>
 
       <!-- TAG_YZ -->
+
       <div class="game-card">
 
         <img
@@ -224,11 +417,10 @@
           <h2>TAG_YZ</h2>
 
           <p>
-            TAG_YZ is a modern dice strategy game inspired by classic Yahtzee-style gameplay.
-            The game includes advanced scoring systems, intelligent robot opponents,
-            dynamic visual effects, music playlists, bonus celebrations,
-            enhanced statistical tracking, polished dice animations,
-            and strategic decision-making for competitive play.
+            TAG_YZ is a modern dice strategy game inspired by classic
+            Yahtzee-style gameplay featuring advanced scoring systems,
+            intelligent robot opponents, polished dice animations,
+            bonus celebrations, statistical tracking, and dynamic audio.
           </p>
 
           <div class="status">
@@ -236,6 +428,7 @@
           </div>
 
         </div>
+
       </div>
 
     </div>
@@ -245,6 +438,49 @@
     </footer>
 
   </div>
+
+  <!-- AUDIO -->
+
+  <audio id="bgMusic" loop>
+    <source src="audio/bg_track_3.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+
+    const music = document.getElementById("bgMusic");
+    const musicStatus = document.getElementById("musicStatus");
+
+    function toggleMusic() {
+
+      if (music.paused) {
+
+        music.play();
+
+        musicStatus.innerHTML = "♫ Music Playing";
+
+      } else {
+
+        music.pause();
+
+        musicStatus.innerHTML = "Music Paused";
+      }
+    }
+
+    function setBackground(element, imagePath) {
+
+      document.body.style.backgroundImage =
+        "linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.82)), url('" + imagePath + "')";
+
+      const thumbs = document.querySelectorAll(".background-thumb");
+
+      thumbs.forEach(function(thumb) {
+        thumb.classList.remove("selected");
+      });
+
+      element.classList.add("selected");
+    }
+
+  </script>
 
 </body>
 </html>
