@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>TAG Enterprises LLC</title>
 
   <style>
@@ -20,13 +21,16 @@
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
       color: var(--text);
+
       background-image:
         linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.82)),
         url("images/desert_sunset_panorama.png");
+
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
       background-repeat: no-repeat;
+
       transition: background-image 0.4s ease;
     }
 
@@ -54,7 +58,7 @@
     }
 
     .controls-panel {
-      background: var(--panel);
+      background: rgba(2, 10, 18, 0.82);
       border: 1px solid rgba(90, 180, 255, 0.45);
       border-radius: 12px;
       padding: 20px;
@@ -154,7 +158,7 @@
       grid-template-columns: 42% 1fr;
       gap: 22px;
       padding: 18px;
-      background: var(--panel);
+      background: rgba(2, 10, 18, 0.82);
       border: 1px solid rgba(90, 180, 255, 0.45);
       border-radius: 12px;
       box-shadow: 0 0 20px rgba(0,0,0,0.5);
@@ -241,6 +245,7 @@
   <div class="site">
     <header>
       <h1>TAG Enterprises LLC</h1>
+
       <div class="subtitle">
         Independent mobile game development studio creating polished and visually exciting games.
       </div>
@@ -250,37 +255,48 @@
       <h2>Website Controls</h2>
 
       <div class="music-controls">
-        <button class="music-button" onclick="toggleMusic()">Play / Pause Music</button>
-        <div id="musicStatus">Music Ready</div>
+        <button class="music-button" onclick="toggleMusic()">
+          Play / Pause Music
+        </button>
+
+        <div id="musicStatus">
+          Music Ready
+        </div>
       </div>
 
       <div class="background-grid">
-        <div class="background-thumb selected" onclick="setBackground(this, 'images/desert_sunset_panorama.png')">
+        <div class="background-thumb selected"
+             onclick="setBackground(this, 'images/desert_sunset_panorama.png')">
           <img src="images/desert_sunset_panorama.png" alt="Desert" />
           <div class="background-label">Desert</div>
         </div>
 
-        <div class="background-thumb" onclick="setBackground(this, 'images/coral_reef_panorama.png')">
+        <div class="background-thumb"
+             onclick="setBackground(this, 'images/coral_reef_panorama.png')">
           <img src="images/coral_reef_panorama.png" alt="Coral" />
           <div class="background-label">Coral</div>
         </div>
 
-        <div class="background-thumb" onclick="setBackground(this, 'images/space_planets_panorama.png')">
+        <div class="background-thumb"
+             onclick="setBackground(this, 'images/space_planets_panorama.png')">
           <img src="images/space_planets_panorama.png" alt="Space" />
           <div class="background-label">Space</div>
         </div>
 
-        <div class="background-thumb" onclick="setBackground(this, 'images/waterfall_cliffs_panorama.png')">
+        <div class="background-thumb"
+             onclick="setBackground(this, 'images/waterfall_cliffs_panorama.png')">
           <img src="images/waterfall_cliffs_panorama.png" alt="Waterfall" />
           <div class="background-label">Waterfall</div>
         </div>
 
-        <div class="background-thumb" onclick="setBackground(this, 'images/wildflowers_panorama.png')">
+        <div class="background-thumb"
+             onclick="setBackground(this, 'images/wildflowers_panorama.png')">
           <img src="images/wildflowers_panorama.png" alt="Wildflowers" />
           <div class="background-label">Wildflowers</div>
         </div>
 
-        <div class="background-thumb" onclick="setBackground(this, 'images/winter_forest_panorama.png')">
+        <div class="background-thumb"
+             onclick="setBackground(this, 'images/winter_forest_panorama.png')">
           <img src="images/winter_forest_panorama.png" alt="Winter" />
           <div class="background-label">Winter</div>
         </div>
@@ -291,69 +307,55 @@
 
     <div class="games-grid">
       <div class="game-card">
-        <img src="images/tag21screenshot.jpg" alt="TAG_21 Screenshot" />
+        <img
+          src="images/tag21screenshot.jpg"
+          alt="TAG_21 Screenshot"
+        />
+
         <div class="game-info">
           <h2>TAG_21</h2>
+
           <p>
             TAG_21 is a polished blackjack experience designed for Android and web gameplay.
-            The game features smooth gameplay, intelligent dealer logic, multiplayer support,
-            robot opponents, customizable backgrounds, realistic casino-style presentation,
-            chip betting systems, insurance handling, and immersive audio.
+            The game features smooth gameplay, intelligent dealer logic,
+            multiplayer support, robot opponents, customizable backgrounds,
+            realistic casino-style presentation, chip betting systems,
+            insurance handling, and immersive audio.
           </p>
-          <a class="play-button" href="tag_21/">▶ Play TAG_21</a>
-          <div class="status">Web Version Available</div>
+
+          <a class="play-button" href="tag_21/">
+            ▶ Play TAG_21
+          </a>
+
+          <div class="status">
+            Web Version Available
+          </div>
         </div>
       </div>
 
       <div class="game-card">
-        <img src="images/tagholdemscreenshot.jpg" alt="TAG_Holdem Screenshot" />
+        <img
+          src="images/tagholdemscreenshot.jpg"
+          alt="TAG_Holdem Screenshot"
+        />
+
         <div class="game-info">
           <h2>TAG_Holdem</h2>
-          <p>
-            TAG_Holdem is a Texas Hold’em poker game featuring human and robot players,
-            community cards, betting strategy, hand evaluation, table-style presentation,
-            and a casino-inspired mobile interface.
-          </p>
-          <div class="status">In Active Development</div>
-        </div>
-      </div>
 
-      <div class="game-card">
-        <img src="images/tagyz_screenshot.jpg" alt="TAG_YZ Screenshot" />
-        <div class="game-info">
-          <h2>TAG_YZ</h2>
           <p>
-            TAG_YZ is a modern dice strategy game inspired by classic Yahtzee-style play.
-            It features robot opponents, enhanced scoring, colorful backgrounds,
-            polished dice presentation, music, and bonus celebration gameplay.
+            TAG_Holdem is a multiplayer Texas Hold'em poker experience designed
+            for Android and web gameplay. The game features human and robot
+            players, poker-table presentation, chip betting, realistic hand flow,
+            dynamic backgrounds, music, and casino-style play.
           </p>
-          <div class="status">Android Release In Progress</div>
-        </div>
-      </div>
 
-      <div class="game-card">
-        <img src="images/dominoes.png" alt="Dominoes Screenshot" />
-        <div class="game-info">
-          <h2>Dominoes</h2>
-          <p>
-            Dominoes will bring classic tile strategy to the TAG Enterprises game lineup,
-            with polished table visuals, smooth play, smart opponents, scoring options,
-            and a timeless strategy feel.
-          </p>
-          <div class="status">Coming Soon</div>
-        </div>
-      </div>
+          <a class="play-button" href="tag_holdem/">
+            ▶ Play TAG_Holdem
+          </a>
 
-      <div class="game-card">
-        <img src="images/mahjong.png" alt="Mahjong Screenshot" />
-        <div class="game-info">
-          <h2>Mahjong</h2>
-          <p>
-            Mahjong will feature elegant tile matching, relaxing visual themes,
-            beautiful game boards, smooth interaction, and a polished premium presentation
-            for casual and strategic play.
-          </p>
-          <div class="status">Coming Soon</div>
+          <div class="status">
+            Web Version Available
+          </div>
         </div>
       </div>
     </div>
