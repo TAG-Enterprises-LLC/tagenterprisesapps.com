@@ -1,0 +1,372 @@
+TAG 21 - HOW TO PLAY
+
+WELCOME TO TAG 21
+
+TAG 21 is a blackjack-style casino card game developed by TAG Enterprises LLC.
+
+The objective is simple:
+
+Beat the dealer by getting closer to 21 than the dealer without going over 21.
+
+TAG 21 supports:
+• Human and robot players
+• Multi-player gameplay
+• Persistent player history
+• Multiple deck shoes
+• Splits, doubles, insurance, and blackjack payouts
+• Dynamic odds displays
+• Background music and customizable visuals
+
+---
+
+## OBJECT OF THE GAME
+
+Each player attempts to build a hand total closer to 21 than the dealer.
+
+A hand that exceeds 21 busts and immediately loses.
+
+After all players finish their hands, the dealer plays.
+
+Results:
+• Higher than dealer without busting = WIN
+• Same as dealer = PUSH
+• Lower than dealer = LOSS
+• Bust = LOSS
+
+---
+
+## CARD VALUES
+
+• Number cards count as their printed value.
+• Jacks, Queens, and Kings count as 10.
+• Aces count as either 1 or 11, whichever produces the best legal total.
+
+BLACKJACK
+
+A blackjack is a two-card 21 made with:
+• An Ace
+• Any 10-value card
+
+Blackjack pays 3:2.
+
+---
+
+## DECK SHOE
+
+At setup, Player 1 selects:
+• 6-deck shoe
+or
+• 8-deck shoe
+
+The selected shoe remains active until reshuffled.
+
+---
+
+## CUT CARD / SHUFFLE FLOW
+
+TAG 21 uses casino-style shoe management.
+
+A virtual cut card is placed near the back portion of the shoe.
+
+When the cut-card point is reached:
+• the current hand finishes normally
+• the shoe is reshuffled
+• a new cut-card position is created
+
+Burn-card behavior is handled internally.
+
+---
+
+## PLAYER SETUP
+
+TAG 21 supports:
+• 1 to 6 players
+• Any combination of human and robot players
+
+Human players may enter custom names.
+
+Default names such as:
+• Player 1
+• Player 2
+
+are temporary and are not saved into history.
+
+---
+
+## PLAYER HISTORY SYSTEM
+
+TAG 21 includes a persistent player-history database for named human players.
+
+The game stores:
+• Player name
+• Most recent ending Bank amount
+• Last date/time used
+
+Up to 500 player records are retained.
+
+When a returning player enters a saved name, the game offers:
+
+CONTINUE PREVIOUS BANK
+Continue using the saved Bank amount.
+
+START OVER
+Reset Bank to the standard $1,000.00 starting Bank.
+
+CHANGE NAME
+Return to name entry.
+
+At game completion, named human players automatically save their latest Bank totals.
+
+---
+
+## BANKROLL
+
+Each player normally begins with:
+$1,000.00
+
+unless restored from saved player history.
+
+The Bank area displays:
+• Current Bank amount
+• Chip inventory
+• Active wager
+
+---
+
+## BETTING
+
+Before cards are dealt, each active player places a wager.
+
+Minimum bet:
+$10.00
+
+The game will not allow:
+• bets below minimum
+• bets larger than available Bank
+
+The betting interface includes:
+• scrolling chip bar
+• repeat bet
+• undo
+• all in
+• automatic change making
+
+---
+
+## REPEAT BET
+
+Repeat Bet restores the previous wager automatically.
+
+Repeat Bet is disabled if the player lacks sufficient funds.
+
+---
+
+## UNDO
+
+Undo removes the most recently added betting chip.
+
+---
+
+## ALL IN
+
+All In moves the player's remaining Bank into the active wager.
+
+---
+
+## AUTOMATIC CHANGE MAKING
+
+TAG 21 automatically makes change when possible.
+
+Example:
+If the player taps a chip denomination unavailable in the Bank, the game may break a larger chip into smaller chips automatically.
+
+If insufficient funds exist, the game displays an explanatory message.
+
+---
+
+## INITIAL DEAL
+
+After all required bets are complete:
+• each player receives two cards
+• the dealer receives two cards
+
+One dealer card remains hidden until dealer play begins.
+
+---
+
+## INSURANCE
+
+If the dealer shows an Ace, insurance may be offered.
+
+Insurance is a side wager that the dealer has blackjack.
+
+If insurance is taken:
+• the game displays a confirmation message
+• dealer blackjack is checked internally
+
+If dealer has blackjack:
+• insurance pays according to standard blackjack rules
+
+If dealer does not have blackjack:
+• insurance wager is lost
+• normal play continues
+
+---
+
+## PLAYER ACTIONS
+
+HIT
+
+Adds one additional card.
+
+Hands exceeding 21 bust immediately.
+
+---
+
+STAY
+
+Ends action for the current hand.
+
+---
+
+DOUBLE DOWN
+
+Double Down:
+• doubles the wager
+• deals exactly one additional card
+• automatically ends the hand
+
+Double Down requires sufficient remaining Bank.
+
+---
+
+SPLIT
+
+If the first two cards have the same blackjack value, the hand may be split.
+
+Splitting:
+• creates two separate hands
+• requires an additional matching wager
+• deals additional cards to each split hand
+
+Additional splits may be allowed if:
+• the hand qualifies
+• sufficient Bank remains
+
+Split-hand transitions may display:
+• Player X Next Hand
+• Next Player
+• Dealer Play
+
+---
+
+## ROBOT PLAYERS
+
+Robot players automatically:
+• place wagers
+• make gameplay decisions
+
+Robot gameplay is intentionally slowed so players can observe decisions.
+
+Robot actions may include:
+• Hit
+• Stay
+• Double Down
+• Split
+• Bust
+
+Robot cards remain visible during play.
+
+---
+
+## ODDS DISPLAY
+
+TAG 21 may display:
+• current hand totals
+• estimated winning percentages
+• dynamically updated odds after hits
+
+Odds calculations use:
+• visible cards
+• remaining shoe state
+• current dealer/player conditions
+
+---
+
+## DEALER PLAY
+
+After all player hands finish:
+• dealer reveals the hidden card
+• dealer draws until reaching required total
+
+If dealer busts:
+all remaining non-busted player hands win.
+
+---
+
+## HAND RESULTS
+
+WIN
+Player receives wager plus winnings.
+
+LOSS
+Player loses wager.
+
+PUSH
+Original wager returned.
+
+BLACKJACK
+Pays 3:2.
+
+BUST
+Immediate loss.
+
+---
+
+## BROKE PLAYER REMOVAL
+
+If a player Bank falls below the minimum $10.00 wager requirement:
+
+• the player is removed from the current game
+• a broke-player notification screen appears
+• the player may participate again in a future game with a reset Bank
+
+After acknowledgment:
+• remaining players continue
+or
+• the game exits if no players remain active
+
+---
+
+## NEW HAND
+
+New Hand begins another round using current remaining player Banks.
+
+Players with insufficient funds are removed automatically.
+
+---
+
+## END GAME / EXIT
+
+At game completion:
+• named human players automatically save their latest Bank totals into player history
+
+Depending on configuration:
+• an interstitial ad may appear during exit flow
+• TAG exit splash graphics may display before returning to the phone menu
+
+---
+
+## SETTINGS
+
+Settings may include:
+• background music controls
+• volume controls
+• background selection
+• gameplay options
+
+---
+
+## ABOUT
+
+TAG 21 is a TAG Enterprises LLC blackjack-style mobile game developed with extensive assistance from ChatGPT.
