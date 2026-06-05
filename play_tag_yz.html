@@ -3,65 +3,78 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Play TAG_YZ</title>
 
   <style>
     html, body {
       margin: 0;
-      width: 100%;
-      height: 100%;
+      min-height: 100%;
       background: #050b12;
-      overflow: hidden;
+      color: white;
       font-family: Arial, Helvetica, sans-serif;
     }
 
     body {
       display: flex;
+      flex-direction: column;
       align-items: center;
+    }
+
+    .back-link {
+      width: 100%;
+      padding: 14px 18px;
+      background: #071522;
+      color: #d8f4ff;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: bold;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.35);
+    }
+
+    .back-link:hover {
+      color: #ffffff;
+      background: #0b2238;
+    }
+
+    .phone-wrap {
+      flex: 1;
+      width: 100%;
+      display: flex;
       justify-content: center;
+      align-items: center;
+      padding: 12px;
     }
 
     .phone-shell {
-      width: min(430px, 100vw);
-      height: min(932px, 100vh);
+      height: calc(100vh - 70px);
       aspect-ratio: 9 / 19.5;
+      max-width: 100vw;
       background: #000;
       border-radius: 24px;
       overflow: hidden;
       box-shadow: 0 0 28px rgba(0,0,0,0.75);
     }
 
-    .phone-shell iframe {
+    iframe {
       width: 100%;
       height: 100%;
       border: 0;
       display: block;
       background: #000;
     }
-
-    @media (max-height: 932px) {
-      .phone-shell {
-        height: 100vh;
-        width: calc(100vh * 9 / 19.5);
-      }
-    }
-
-    @media (max-width: 430px) {
-      .phone-shell {
-        width: 100vw;
-        height: calc(100vw * 19.5 / 9);
-      }
-    }
   </style>
 </head>
 
 <body>
-  <div class="phone-shell">
-    <iframe
-      src="tag_yz/"
-      allow="autoplay; fullscreen"
-    ></iframe>
+  <a class="back-link" href="/" target="_top">← Back to TAG Enterprises Apps</a>
+
+  <div class="phone-wrap">
+    <div class="phone-shell">
+      <iframe
+        src="tag_yz/"
+        allow="autoplay; fullscreen"
+      ></iframe>
+    </div>
   </div>
 </body>
 </html>
