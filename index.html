@@ -235,32 +235,32 @@
       </div>
 
       <div class="background-grid">
-        <div class="background-thumb selected" onclick="setBackground(this, 'images/desert_sunset_panorama.png')">
+        <div class="background-thumb selected" data-bg="images/desert_sunset_panorama.png" onclick="setBackground(this, 'images/desert_sunset_panorama.png')">
           <img src="images/desert_sunset_panorama.png" alt="Desert" />
           <div class="background-label">Desert</div>
         </div>
 
-        <div class="background-thumb" onclick="setBackground(this, 'images/coral_reef_panorama.png')">
+        <div class="background-thumb" data-bg="images/coral_reef_panorama.png" onclick="setBackground(this, 'images/coral_reef_panorama.png')">
           <img src="images/coral_reef_panorama.png" alt="Coral" />
           <div class="background-label">Coral</div>
         </div>
 
-        <div class="background-thumb" onclick="setBackground(this, 'images/space_planets_panorama.png')">
+        <div class="background-thumb" data-bg="images/space_planets_panorama.png" onclick="setBackground(this, 'images/space_planets_panorama.png')">
           <img src="images/space_planets_panorama.png" alt="Space" />
           <div class="background-label">Space</div>
         </div>
 
-        <div class="background-thumb" onclick="setBackground(this, 'images/waterfall_cliffs_panorama.png')">
+        <div class="background-thumb" data-bg="images/waterfall_cliffs_panorama.png" onclick="setBackground(this, 'images/waterfall_cliffs_panorama.png')">
           <img src="images/waterfall_cliffs_panorama.png" alt="Waterfall" />
           <div class="background-label">Waterfall</div>
         </div>
 
-        <div class="background-thumb" onclick="setBackground(this, 'images/wildflowers_panorama.png')">
+        <div class="background-thumb" data-bg="images/wildflowers_panorama.png" onclick="setBackground(this, 'images/wildflowers_panorama.png')">
           <img src="images/wildflowers_panorama.png" alt="Wildflowers" />
           <div class="background-label">Wildflowers</div>
         </div>
 
-        <div class="background-thumb" onclick="setBackground(this, 'images/winter_forest_panorama.png')">
+        <div class="background-thumb" data-bg="images/winter_forest_panorama.png" onclick="setBackground(this, 'images/winter_forest_panorama.png')">
           <img src="images/winter_forest_panorama.png" alt="Winter" />
           <div class="background-label">Winter</div>
         </div>
@@ -348,9 +348,27 @@
     const backgroundOverlay =
       'linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.82))';
 
-    function setBackground(element, imagePath) {
+    const defaultBackground = 'images/desert_sunset_panorama.png';
+    const backgroundStorageKey = 'tagEnterprisesSelectedBackground';
+
+    function applyBackground(imagePath) {
       document.body.style.backgroundImage =
         backgroundOverlay + ', url("' + imagePath + '")';
+    }
+
+    function markSelectedBackground(imagePath) {
+      document.querySelectorAll('.background-thumb').forEach(function(thumb) {
+        thumb.classList.remove('selected');
+
+        if (thumb.getAttribute('data-bg') === imagePath) {
+          thumb.classList.add('selected');
+        }
+      });
+    }
+
+    function setBackground(element, imagePath) {
+      applyBackground(imagePath);
+      localStorage.setItem(backgroundStorageKey, imagePath);
 
       document.querySelectorAll('.background-thumb').forEach(function(thumb) {
         thumb.classList.remove('selected');
@@ -358,6 +376,14 @@
 
       element.classList.add('selected');
     }
+
+    window.addEventListener('DOMContentLoaded', function() {
+      const savedBackground =
+        localStorage.getItem(backgroundStorageKey) || defaultBackground;
+
+      applyBackground(savedBackground);
+      markSelectedBackground(savedBackground);
+    });
 
     const tracks = [
       'audio/bg_track_1.mp3',
