@@ -1,11 +1,11 @@
 {
-    "name": "TAG_21",
-    "short_name": "TAG_21",
+    "name": "tag_21",
+    "short_name": "tag_21",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#031A11",
-    "theme_color": "#D6A633",
-    "description": "TAG_21 blackjack-style card game by TAG Enterprises LLC.",
+    "background_color": "#0175C2",
+    "theme_color": "#0175C2",
+    "description": "A new Flutter project.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
