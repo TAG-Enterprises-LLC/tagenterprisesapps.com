@@ -1,155 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TAG_21 Casino Info</title>
   <style>
-    :root {
-      --felt-dark: #031a11;
-      --felt: #063a25;
-      --felt-light: #0e6b43;
-      --gold: #d6a633;
-      --gold-light: #ffd86b;
-      --cream: #f8fafc;
-      --muted: rgba(248, 250, 252, 0.78);
-      --panel: rgba(6, 58, 37, 0.94);
-      --line: rgba(214, 166, 51, 0.42);
-      --shadow: rgba(0, 0, 0, 0.45);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       margin: 0;
+      padding: 16px;
+      background: #f6f1e4;
+      color: #111827;
       font-family: Arial, Helvetica, sans-serif;
-      color: var(--cream);
-      background:
-        radial-gradient(circle at 50% 0%, rgba(14, 107, 67, 0.88), rgba(3, 26, 17, 0.96) 58%, #010805 100%);
-      min-height: 100vh;
-      line-height: 1.55;
+      font-size: 16px;
+      line-height: 1.45;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        repeating-linear-gradient(135deg, rgba(255,255,255,0.018) 0, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 20px),
-        radial-gradient(circle at center, transparent 0, rgba(0,0,0,0.25) 82%);
-    }
-
-    .page {
-      position: relative;
-      max-width: 980px;
+    .tag-policy-page {
+      width: 100%;
+      max-width: 900px;
       margin: 0 auto;
-      padding: 22px 14px 48px;
     }
 
     .hero,
     .card {
-      background: linear-gradient(145deg, rgba(6, 58, 37, 0.96), rgba(29, 20, 5, 0.86));
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      box-shadow: 0 14px 32px var(--shadow);
-      padding: 20px;
-      margin-bottom: 16px;
+      display: block;
+      width: auto;
+      margin: 0 0 14px 0;
+      padding: 14px;
+      border-radius: 12px;
+      background: #ffffff;
+      border: 1px solid #d6a633;
     }
 
     .hero {
-      text-align: center;
-      padding-top: 26px;
+      background: #063a25;
+      color: #ffffff;
     }
 
     .badge {
-      display: inline-block;
-      color: #121212;
-      background: var(--gold-light);
-      font-weight: 800;
-      border-radius: 999px;
-      padding: 6px 12px;
-      font-size: 0.82rem;
-      margin-bottom: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+      display: none;
     }
 
-    h1 {
-      color: var(--gold-light);
-      margin: 0;
-      font-size: clamp(2rem, 6vw, 3.25rem);
-      letter-spacing: 0.02em;
+    h1, h2, h3 {
+      margin: 0 0 10px 0;
+      color: #063a25;
     }
 
-    h2 {
-      color: var(--gold-light);
-      margin: 0 0 10px;
-      font-size: 1.35rem;
-    }
-
-    h3 {
-      color: var(--gold-light);
-      margin: 18px 0 8px;
+    .hero h1,
+    .hero h2 {
+      color: #ffd966;
     }
 
     p {
-      margin: 0 0 12px;
+      margin: 0 0 10px 0;
     }
 
-    .subtitle {
-      color: var(--muted);
-      max-width: 760px;
-      margin: 10px auto 0;
+    ul {
+      margin: 0 0 10px 22px;
+      padding: 0;
     }
 
-    .notice {
-      border-left: 5px solid var(--gold);
-      padding: 12px 14px;
-      background: rgba(214, 166, 51, 0.12);
-      border-radius: 12px;
-      margin-top: 14px;
+    li {
+      margin-bottom: 5px;
     }
 
-    .links {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 12px;
-      margin-top: 14px;
-    }
-
-    .resource {
-      display: block;
-      text-decoration: none;
-      color: var(--cream);
-      background: rgba(0, 0, 0, 0.18);
-      border: 1px solid rgba(214, 166, 51, 0.32);
-      border-radius: 16px;
-      padding: 14px;
-      min-height: 130px;
-      transition: transform 0.16s ease, border-color 0.16s ease, background 0.16s ease;
-    }
-
-    .resource:hover,
-    .resource:focus {
-      transform: translateY(-2px);
-      border-color: var(--gold-light);
-      background: rgba(214, 166, 51, 0.12);
-      outline: none;
-    }
-
-    .resource strong {
-      display: block;
-      color: var(--gold-light);
-      font-size: 1.05rem;
-      margin-bottom: 6px;
-    }
-
-    .resource span {
-      display: block;
-      color: var(--muted);
-      font-size: 0.94rem;
+    a {
+      color: #0b63ce;
+      word-break: break-word;
     }
 
     .warning-box {
@@ -157,168 +74,94 @@
       background: #ffffff;
       border: 2px solid #b00020;
       border-radius: 0;
-      padding: 12px 16px;
-      margin-top: 12px;
+      padding: 12px 14px;
+      margin: 10px 0;
       font-weight: 800;
     }
 
     .warning-box ul {
-      margin: 0;
-      padding-left: 20px;
-    }
-
-    .warning-box li {
-      margin: 5px 0;
-    }
-
-    .button-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-      margin-top: 18px;
-    }
-
-    .button {
-      display: inline-block;
-      color: #111;
-      background: var(--gold);
-      border: 1px solid #3b2a08;
-      border-radius: 14px;
-      padding: 10px 14px;
-      text-decoration: none;
-      font-weight: 800;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.25);
-    }
-
-    .button:hover,
-    .button:focus {
-      background: var(--gold-light);
-      outline: none;
-    }
-
-    ul {
-      margin-top: 8px;
-      padding-left: 22px;
-    }
-
-    li {
-      margin-bottom: 8px;
+      margin: 0 0 0 22px;
+      padding: 0;
     }
 
     .abbr-table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 12px;
-      overflow: hidden;
-      border-radius: 14px;
-      border: 1px solid rgba(214, 166, 51, 0.32);
-      background: rgba(0, 0, 0, 0.16);
+      margin: 10px 0;
+      background: #ffffff;
+      border: 1px solid #d6a633;
     }
 
     .abbr-table th,
     .abbr-table td {
-      padding: 10px 12px;
-      border-bottom: 1px solid rgba(214, 166, 51, 0.18);
+      padding: 8px 10px;
+      border: 1px solid #d6a633;
       vertical-align: top;
       text-align: left;
     }
 
     .abbr-table th {
-      color: #121212;
-      background: var(--gold-light);
-      font-size: 0.92rem;
-    }
-
-    .abbr-table tr:last-child td {
-      border-bottom: none;
+      background: #063a25;
+      color: #ffd966;
     }
 
     .abbr-table code {
-      color: var(--gold-light);
       font-weight: 800;
-      font-size: 1rem;
-    }
-
-    .return-note {
-      text-align: center;
-      color: var(--muted);
-      margin-top: 10px;
-      font-size: 0.94rem;
+      color: #063a25;
     }
 
     .fine-print {
-      color: rgba(248, 250, 252, 0.7);
-      font-size: 0.9rem;
+      font-size: 14px;
+      color: #374151;
+    }
+
+    .footer {
+      text-align: center;
+      color: #ffffff;
+      background: #063a25;
+      padding: 12px;
+      border-radius: 12px;
     }
   </style>
 </head>
 <body>
-  <main class="page">
+  <div class="tag-policy-page">
     <section class="hero">
-      <div class="badge">TAG Enterprises LLC</div>
-      <h1>TAG_21 Casino Info</h1>
-      <p class="subtitle">
-        Links to third-party blackjack information resources for players who want to compare TAG_21 settings with casino-style rules and table conditions.
-      </p>
-      <div class="notice">
-        <strong>Important:</strong> TAG_21 is a blackjack simulation game only. It does not offer, enable, or promote real-money gambling.
-        Actual casino rules may vary by table, location, date, time, promotion, and dealer procedure.
-      </div>
-      <p class="return-note">
-        In the TAG_21 mobile app, use the browser Close, X, or Back control to close this page and return to the TAG_21 setup screen.
-      </p>
+      <div class="badge">Visual HTML version: 2026-06-30D</div>
+      <h1>TAG Enterprises LLC</h1>
+      <h2>TAG_21 Casino Info</h2>
+      <p class="subtitle">Links to blackjack information resources for players who want to compare TAG_21 settings with casino-style rules and table conditions.</p>
     </section>
 
     <section class="card">
-      <h2>Third-Party Blackjack Information Resources</h2>
-      <p>
-        These links are provided for convenience only. Some resources may require registration, membership, or payment. TAG Enterprises LLC does not control the linked websites or their content.
-      </p>
-
-      <div class="links">
-        <a class="resource" href="https://vegasadvantage.com/las-vegas-blackjack/" target="_blank" rel="noopener noreferrer">
-          <strong>Vegas Advantage — Las Vegas Blackjack</strong>
-          <span>Las Vegas blackjack and table-game coverage, including casino conditions and survey information.</span>
-        </a>
-
-        <a class="resource" href="https://wizardofvegas.com/guides/blackjack-survey/" target="_blank" rel="noopener noreferrer">
-          <strong>Wizard of Vegas — Blackjack Survey</strong>
-          <span>Blackjack survey information and rule abbreviations for Las Vegas-area games.</span>
-        </a>
-
-        <a class="resource" href="https://bj21.com/cbjn" target="_blank" rel="noopener noreferrer">
-          <strong>BJ21 — Current Blackjack News</strong>
-          <span>Subscription-based blackjack rules and conditions reporting.</span>
-        </a>
-
-        <a class="resource" href="https://www.blackjackapprenticeship.com/features/casino411/" target="_blank" rel="noopener noreferrer">
-          <strong>Blackjack Apprenticeship — Casino411</strong>
-          <span>Membership-based casino-condition information for blackjack players.</span>
-        </a>
-
-        <a class="resource" href="https://www.qfit.com/maps.shtml" target="_blank" rel="noopener noreferrer">
-          <strong>QFIT — Blackjack Weather Center</strong>
-          <span>Map-style blackjack conditions resource that references Current Blackjack News data.</span>
-        </a>
-
-        <a class="resource" href="https://www.blackjackinfo.com/" target="_blank" rel="noopener noreferrer">
-          <strong>BlackjackInfo</strong>
-          <span>Blackjack strategy, rules, and training resources.</span>
-        </a>
-
-        <a class="resource" href="https://www.blackjackreview.com/wp/rules-and-conditions/" target="_blank" rel="noopener noreferrer">
-          <strong>Blackjack Review — Rules and Conditions</strong>
-          <span>Historical blackjack conditions page with pointers to other resources.</span>
-        </a>
+      <h3>Important Reminders</h3>
+      <div class="warning-box" role="note" aria-label="Important reminders">
+        <ul>
+          <li>TAG_21 is a blackjack simulation game only.</li>
+          <li>Casino rules may change and may vary by table, location, date, time, promotion, and dealer procedure.</li>
+          <li>TAG Enterprises LLC is not affiliated with, sponsored by, or endorsed by the linked websites, casinos, publishers, or organizations.</li>
+        </ul>
       </div>
+      <p>In the TAG_21 mobile app, use the browser Close, X, or Back control to close this page and return to the TAG_21 setup screen.</p>
     </section>
 
     <section class="card">
-      <h2>Common Blackjack Survey Abbreviations</h2>
-      <p>
-        Blackjack survey sites often use short rule codes. The exact meaning can vary by publisher, so always check the source page, but these are common meanings used in the Wizard of Vegas survey.
-      </p>
+      <h3>Third-Party Blackjack Information Resources</h3>
+      <p>These links are provided for convenience only. Some resources may require registration, membership, or payment. TAG Enterprises LLC does not control the linked websites or their content.</p>
+      <ul>
+        <li><a href="https://vegasadvantage.com/las-vegas-blackjack/" target="_blank" rel="noopener noreferrer"><strong>Vegas Advantage — Las Vegas Blackjack</strong></a><br>Las Vegas blackjack and table-game coverage, including casino conditions and survey information.</li>
+        <li><a href="https://wizardofvegas.com/guides/blackjack-survey/" target="_blank" rel="noopener noreferrer"><strong>Wizard of Vegas — Blackjack Survey</strong></a><br>Blackjack survey information and rule abbreviations for Las Vegas-area games.</li>
+        <li><a href="https://bj21.com/cbjn" target="_blank" rel="noopener noreferrer"><strong>BJ21 — Current Blackjack News</strong></a><br>Subscription-based blackjack rules and conditions reporting.</li>
+        <li><a href="https://www.blackjackapprenticeship.com/features/casino411/" target="_blank" rel="noopener noreferrer"><strong>Blackjack Apprenticeship — Casino411</strong></a><br>Membership-based casino-condition information for blackjack players.</li>
+        <li><a href="https://www.qfit.com/maps.shtml" target="_blank" rel="noopener noreferrer"><strong>QFIT — Blackjack Weather Center</strong></a><br>Map-style blackjack conditions resource that references Current Blackjack News data.</li>
+        <li><a href="https://www.blackjackinfo.com/" target="_blank" rel="noopener noreferrer"><strong>BlackjackInfo</strong></a><br>Blackjack strategy, rules, and training resources.</li>
+        <li><a href="https://www.blackjackreview.com/wp/rules-and-conditions/" target="_blank" rel="noopener noreferrer"><strong>Blackjack Review — Rules and Conditions</strong></a><br>Historical blackjack conditions page with pointers to other resources.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h3>Common Blackjack Survey Abbreviations</h3>
+      <p>Blackjack survey sites often use short rule codes. The exact meaning can vary by publisher, so always check the source page. These are common meanings used in the Wizard of Vegas survey.</p>
       <table class="abbr-table" aria-label="Common blackjack survey rule abbreviations">
         <thead>
           <tr>
@@ -338,46 +181,30 @@
           <tr><td><code>nms</code></td><td>No mid-game entry and no sitting out hands; dropping from two hands to one may prevent returning to two hands until the shuffle.</td></tr>
           <tr><td><code>sc</code></td><td>A card is used to set the shuffle point in single-deck or double-deck games; often called a cut card.</td></tr>
           <tr><td><code>pv</code></td><td>Penetration varies by dealer.</td></tr>
-          <tr><td><code>notch</code></td><td>Penetration is set by a physical notch or marked position used by the casino/dealer to place the shuffle or cut card. In practical terms, it controls where the yellow cut card goes and how much of the deck or shoe is dealt before the next shuffle.</td></tr>
+          <tr><td><code>notch</code></td><td>Penetration is set by a physical notch or marked position used by the casino or dealer to place the shuffle/cut card. In practical terms, it controls where the yellow cut card goes and how much of the deck or shoe is dealt before the next shuffle.</td></tr>
           <tr><td><code>shoe</code></td><td>Single-deck or double-deck cards are dealt from a shoe.</td></tr>
         </tbody>
       </table>
-      <p class="fine-print">
-        Abbreviation guide included for convenience. Visit the original survey site for the publisher's current definitions and usage notes.
-      </p>
+      <p class="fine-print">Abbreviation guide included for convenience. Visit the original survey site for the publisher's current definitions and usage notes.</p>
     </section>
 
     <section class="card">
-      <h2>How to Use This Information with TAG_21</h2>
+      <h3>How to Use This Information with TAG_21</h3>
       <ul>
         <li>Use the third-party information to identify the general rule style you want to simulate.</li>
         <li>Return to TAG_21 setup and manually adjust the game-type settings such as decks, H17/S17, blackjack payout, surrender, split rules, and table limits.</li>
         <li>When a source and a casino table differ, rely on the actual table placard or casino staff for the current real-world rule.</li>
       </ul>
-      <div class="warning-box" role="note" aria-label="Important reminders">
-        <ul>
-          <li>Simulation only</li>
-          <li>Rules may change</li>
-          <li>No affiliation with the linked websites or casinos</li>
-        </ul>
-      </div>
     </section>
 
     <section class="card">
-      <h2>Disclaimer</h2>
-      <p>
-        Casino information links are provided for convenience only. TAG Enterprises LLC is not affiliated with, sponsored by, or endorsed by the linked websites, casinos, publishers, or organizations. Third-party websites control their own content and may change, remove, restrict, or charge for access to their information at any time.
-      </p>
-      <p>
-        TAG_21 is a blackjack simulation game only. It does not accept wagers, award money, process gambling transactions, or provide access to real-money gambling.
-      </p>
-      <p class="fine-print">
-        Last updated: June 30, 2026. Abbreviation guide revised June 30, 2026.
-      </p>
-      <p class="return-note">
-        To leave this page from the TAG_21 mobile app, close the browser view or press your device Back control.
-      </p>
+      <h3>Disclaimer</h3>
+      <p>Casino information links are provided for convenience only. TAG Enterprises LLC is not affiliated with, sponsored by, or endorsed by the linked websites, casinos, publishers, or organizations. Third-party websites control their own content and may change, remove, restrict, or charge for access to their information at any time.</p>
+      <p>TAG_21 is a blackjack simulation game only. It does not accept wagers, award money, process gambling transactions, or provide access to real-money gambling.</p>
+      <p class="fine-print">Last updated: June 30, 2026.</p>
     </section>
-  </main>
+
+    <p class="footer">© 2026 TAG Enterprises LLC. All rights reserved.</p>
+  </div>
 </body>
 </html>
