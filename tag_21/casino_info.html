@@ -152,20 +152,23 @@
       font-size: 0.94rem;
     }
 
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 10px;
+    .warning-box {
+      color: #b00020;
+      background: #ffffff;
+      border: 2px solid #b00020;
+      border-radius: 0;
+      padding: 12px 16px;
+      margin-top: 12px;
+      font-weight: 800;
     }
 
-    .pill {
-      color: #121212;
-      background: var(--gold);
-      border-radius: 999px;
-      padding: 5px 10px;
-      font-size: 0.82rem;
-      font-weight: 800;
+    .warning-box ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .warning-box li {
+      margin: 5px 0;
     }
 
     .button-row {
@@ -262,11 +265,9 @@
         <strong>Important:</strong> TAG_21 is a blackjack simulation game only. It does not offer, enable, or promote real-money gambling.
         Actual casino rules may vary by table, location, date, time, promotion, and dealer procedure.
       </div>
-      <div class="button-row">
-        <a class="button" href="/tag_21/">Return to TAG_21 Web Game</a>
-        <a class="button" href="/">TAG Enterprises Apps</a>
-      </div>
-      <p class="return-note">In the mobile app, use the browser Close, X, or Back control to return to the TAG_21 setup screen.</p>
+      <p class="return-note">
+        In the TAG_21 mobile app, use the browser Close, X, or Back control to close this page and return to the TAG_21 setup screen.
+      </p>
     </section>
 
     <section class="card">
@@ -337,7 +338,7 @@
           <tr><td><code>nms</code></td><td>No mid-game entry and no sitting out hands; dropping from two hands to one may prevent returning to two hands until the shuffle.</td></tr>
           <tr><td><code>sc</code></td><td>A card is used to set the shuffle point in single-deck or double-deck games; often called a cut card.</td></tr>
           <tr><td><code>pv</code></td><td>Penetration varies by dealer.</td></tr>
-          <tr><td><code>notch</code></td><td>Penetration is set by a notch.</td></tr>
+          <tr><td><code>notch</code></td><td>Penetration is set by a physical notch or marked position used by the casino/dealer to place the shuffle or cut card. In practical terms, it controls where the yellow cut card goes and how much of the deck or shoe is dealt before the next shuffle.</td></tr>
           <tr><td><code>shoe</code></td><td>Single-deck or double-deck cards are dealt from a shoe.</td></tr>
         </tbody>
       </table>
@@ -353,10 +354,12 @@
         <li>Return to TAG_21 setup and manually adjust the game-type settings such as decks, H17/S17, blackjack payout, surrender, split rules, and table limits.</li>
         <li>When a source and a casino table differ, rely on the actual table placard or casino staff for the current real-world rule.</li>
       </ul>
-      <div class="pill-row">
-        <span class="pill">Simulation only</span>
-        <span class="pill">Rules may change</span>
-        <span class="pill">No affiliation</span>
+      <div class="warning-box" role="note" aria-label="Important reminders">
+        <ul>
+          <li>Simulation only</li>
+          <li>Rules may change</li>
+          <li>No affiliation with the linked websites or casinos</li>
+        </ul>
       </div>
     </section>
 
@@ -369,12 +372,11 @@
         TAG_21 is a blackjack simulation game only. It does not accept wagers, award money, process gambling transactions, or provide access to real-money gambling.
       </p>
       <p class="fine-print">
-        Last updated: June 30, 2026. Abbreviation guide added June 30, 2026.
+        Last updated: June 30, 2026. Abbreviation guide revised June 30, 2026.
       </p>
-      <div class="button-row">
-        <a class="button" href="/tag_21/">Return to TAG_21 Web Game</a>
-        <a class="button" href="/">Return to TAG Enterprises Apps</a>
-      </div>
+      <p class="return-note">
+        To leave this page from the TAG_21 mobile app, close the browser view or press your device Back control.
+      </p>
     </section>
   </main>
 </body>
