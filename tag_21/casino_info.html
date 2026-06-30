@@ -203,6 +203,47 @@
       margin-bottom: 8px;
     }
 
+    .abbr-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      overflow: hidden;
+      border-radius: 14px;
+      border: 1px solid rgba(214, 166, 51, 0.32);
+      background: rgba(0, 0, 0, 0.16);
+    }
+
+    .abbr-table th,
+    .abbr-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(214, 166, 51, 0.18);
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .abbr-table th {
+      color: #121212;
+      background: var(--gold-light);
+      font-size: 0.92rem;
+    }
+
+    .abbr-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .abbr-table code {
+      color: var(--gold-light);
+      font-weight: 800;
+      font-size: 1rem;
+    }
+
+    .return-note {
+      text-align: center;
+      color: var(--muted);
+      margin-top: 10px;
+      font-size: 0.94rem;
+    }
+
     .fine-print {
       color: rgba(248, 250, 252, 0.7);
       font-size: 0.9rem;
@@ -221,6 +262,11 @@
         <strong>Important:</strong> TAG_21 is a blackjack simulation game only. It does not offer, enable, or promote real-money gambling.
         Actual casino rules may vary by table, location, date, time, promotion, and dealer procedure.
       </div>
+      <div class="button-row">
+        <a class="button" href="/tag_21/">Return to TAG_21 Web Game</a>
+        <a class="button" href="/">TAG Enterprises Apps</a>
+      </div>
+      <p class="return-note">In the mobile app, use the browser Close, X, or Back control to return to the TAG_21 setup screen.</p>
     </section>
 
     <section class="card">
@@ -268,6 +314,39 @@
     </section>
 
     <section class="card">
+      <h2>Common Blackjack Survey Abbreviations</h2>
+      <p>
+        Blackjack survey sites often use short rule codes. The exact meaning can vary by publisher, so always check the source page, but these are common meanings used in the Wizard of Vegas survey.
+      </p>
+      <table class="abbr-table" aria-label="Common blackjack survey rule abbreviations">
+        <thead>
+          <tr>
+            <th>Code</th>
+            <th>Meaning</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><code>h17</code></td><td>Dealer hits soft 17.</td></tr>
+          <tr><td><code>s17</code></td><td>Dealer stands on soft 17.</td></tr>
+          <tr><td><code>ds</code></td><td>Double down is allowed after splitting.</td></tr>
+          <tr><td><code>d10</code></td><td>Double down is restricted to two-card totals of 10 or more.</td></tr>
+          <tr><td><code>ls</code></td><td>Late surrender is available.</td></tr>
+          <tr><td><code>rsa</code></td><td>Resplitting aces is allowed.</td></tr>
+          <tr><td><code>nm</code></td><td>No mid-game entry.</td></tr>
+          <tr><td><code>nmm</code></td><td>No mid-game entry and no mid-game spreading to multiple hands.</td></tr>
+          <tr><td><code>nms</code></td><td>No mid-game entry and no sitting out hands; dropping from two hands to one may prevent returning to two hands until the shuffle.</td></tr>
+          <tr><td><code>sc</code></td><td>A card is used to set the shuffle point in single-deck or double-deck games; often called a cut card.</td></tr>
+          <tr><td><code>pv</code></td><td>Penetration varies by dealer.</td></tr>
+          <tr><td><code>notch</code></td><td>Penetration is set by a notch.</td></tr>
+          <tr><td><code>shoe</code></td><td>Single-deck or double-deck cards are dealt from a shoe.</td></tr>
+        </tbody>
+      </table>
+      <p class="fine-print">
+        Abbreviation guide included for convenience. Visit the original survey site for the publisher's current definitions and usage notes.
+      </p>
+    </section>
+
+    <section class="card">
       <h2>How to Use This Information with TAG_21</h2>
       <ul>
         <li>Use the third-party information to identify the general rule style you want to simulate.</li>
@@ -290,7 +369,7 @@
         TAG_21 is a blackjack simulation game only. It does not accept wagers, award money, process gambling transactions, or provide access to real-money gambling.
       </p>
       <p class="fine-print">
-        Last updated: June 30, 2026.
+        Last updated: June 30, 2026. Abbreviation guide added June 30, 2026.
       </p>
       <div class="button-row">
         <a class="button" href="/tag_21/">Return to TAG_21 Web Game</a>
