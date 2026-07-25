@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NEW TAG Enterprises LLC</title>
+  <title>TAG Enterprises LLC</title>
 
   <style>
     :root {
@@ -18,14 +18,7 @@
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
       color: var(--text);
-      background-image:
-        linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.82)),
-        url("images/desert_sunset_panorama.png");
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      background-repeat: no-repeat;
-      transition: background-image 0.4s ease;
+      background-color: #1e5631;
     }
 
     .site {
@@ -36,7 +29,7 @@
 
     header {
       text-align: center;
-      padding-bottom: 24px;
+      padding-bottom: 20px;
       text-shadow: 0 0 12px #005eff;
     }
 
@@ -49,6 +42,32 @@
       margin-top: 12px;
       font-size: clamp(18px, 2vw, 24px);
       color: #d8f4ff;
+    }
+
+    .top-menu {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 18px 0 28px;
+    }
+
+    .menu-button {
+      border: none;
+      border-radius: 8px;
+      padding: 12px 22px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      color: white;
+      text-decoration: none;
+      background: linear-gradient(#00a2ff, #0054d6);
+      box-shadow: 0 0 16px rgba(0, 120, 255, 0.55);
+      display: inline-block;
+    }
+
+    .menu-button:hover {
+      filter: brightness(1.12);
     }
 
     .controls-panel, .game-card {
@@ -96,45 +115,6 @@
       margin-top: 12px;
       color: #d7f4ff;
       font-size: 18px;
-    }
-
-    .background-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 10px;
-    }
-
-    .background-thumb {
-      border: 3px solid rgba(255,255,255,0.2);
-      border-radius: 10px;
-      overflow: hidden;
-      cursor: pointer;
-      background: rgba(0,0,0,0.35);
-      transition: all 0.2s ease;
-    }
-
-    .background-thumb:hover {
-      transform: scale(1.03);
-      border-color: #40b6ff;
-    }
-
-    .background-thumb.selected {
-      border-color: #00ff48;
-      box-shadow: 0 0 18px #00ff48;
-    }
-
-    .background-thumb img {
-      width: 100%;
-      height: 70px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .background-label {
-      text-align: center;
-      padding: 6px;
-      font-size: 13px;
-      color: #e8f8ff;
     }
 
     .section-title {
@@ -205,65 +185,105 @@
       color: #d0eaff;
     }
 
-    @media (max-width: 1000px) {
-      .background-grid { grid-template-columns: repeat(3, 1fr); }
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0,0,0,0.78);
+      padding: 18px;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-box {
+      width: min(720px, 96vw);
+      max-height: 88vh;
+      overflow-y: auto;
+      background: rgba(2, 10, 18, 0.96);
+      border: 2px solid rgba(90, 180, 255, 0.75);
+      border-radius: 16px;
+      box-shadow: 0 0 35px rgba(0, 120, 255, 0.55);
+      padding: 24px;
+      color: white;
+    }
+
+    .modal-box h2 {
+      margin-top: 0;
+      color: #6cc8ff;
+      font-size: 34px;
+      text-align: center;
+    }
+
+    .modal-box p,
+    .modal-box li {
+      font-size: 19px;
+      line-height: 1.5;
+      color: #f0f8ff;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .modal-close {
+      border: none;
+      border-radius: 8px;
+      padding: 12px 22px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      color: white;
+      background: linear-gradient(#00a2ff, #0054d6);
+    }
+
+    .exit-warning {
+      display: none;
+      margin-top: 14px;
+      padding: 12px;
+      border-radius: 10px;
+      background: rgba(255, 216, 107, 0.15);
+      border: 1px solid rgba(255, 216, 107, 0.8);
+      color: #fff1b8;
+      text-align: center;
+      font-size: 17px;
+      line-height: 1.4;
     }
 
     @media (max-width: 850px) {
       .game-card { grid-template-columns: 1fr; }
       .game-card img { min-height: 200px; }
-      .background-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
 
 <body>
-  <div class="site">
+  <div class="site" id="top">
     <header>
       <h1>TAG Enterprises LLC</h1>
       <div class="subtitle">
-        Independent mobile game development studio creating polished and visually exciting games.
+        Independent mobile game development studio creating polished and visually exciting phone apps.
       </div>
     </header>
 
-    <div class="controls-panel">
-      <h2>Website Controls</h2>
+    <nav class="top-menu" aria-label="Website menu">
+      <button class="menu-button" type="button" onclick="openAbout()">About</button>
+      <a class="menu-button" href="privacy_policy.html">Privacy</a>
+      <button class="menu-button" type="button" onclick="openExitMenu()">Exit Menu</button>
+    </nav>
 
+    <div class="controls-panel">
       <div class="music-controls">
         <button class="music-button" onclick="toggleMusic()">Play / Pause Music</button>
         <div id="musicStatus">Music Ready</div>
-      </div>
-
-      <div class="background-grid">
-        <div class="background-thumb selected" data-bg="images/desert_sunset_panorama.png" onclick="setBackground(this, 'images/desert_sunset_panorama.png')">
-          <img src="images/desert_sunset_panorama.png" alt="Desert" />
-          <div class="background-label">Desert</div>
-        </div>
-
-        <div class="background-thumb" data-bg="images/coral_reef_panorama.png" onclick="setBackground(this, 'images/coral_reef_panorama.png')">
-          <img src="images/coral_reef_panorama.png" alt="Coral" />
-          <div class="background-label">Coral</div>
-        </div>
-
-        <div class="background-thumb" data-bg="images/space_planets_panorama.png" onclick="setBackground(this, 'images/space_planets_panorama.png')">
-          <img src="images/space_planets_panorama.png" alt="Space" />
-          <div class="background-label">Space</div>
-        </div>
-
-        <div class="background-thumb" data-bg="images/waterfall_cliffs_panorama.png" onclick="setBackground(this, 'images/waterfall_cliffs_panorama.png')">
-          <img src="images/waterfall_cliffs_panorama.png" alt="Waterfall" />
-          <div class="background-label">Waterfall</div>
-        </div>
-
-        <div class="background-thumb" data-bg="images/wildflowers_panorama.png" onclick="setBackground(this, 'images/wildflowers_panorama.png')">
-          <img src="images/wildflowers_panorama.png" alt="Wildflowers" />
-          <div class="background-label">Wildflowers</div>
-        </div>
-
-        <div class="background-thumb" data-bg="images/winter_forest_panorama.png" onclick="setBackground(this, 'images/winter_forest_panorama.png')">
-          <img src="images/winter_forest_panorama.png" alt="Winter" />
-          <div class="background-label">Winter</div>
-        </div>
       </div>
     </div>
 
@@ -277,7 +297,7 @@
           <p>
             TAG_21 is a polished blackjack experience designed for Android and web gameplay.
             The game features smooth gameplay, intelligent dealer logic, multiplayer support,
-            robot opponents, customizable backgrounds, realistic casino-style presentation,
+            robot opponents, realistic casino-style presentation,
             chip betting systems, insurance handling, and immersive audio.
           </p>
           <a class="play-button" href="play_tag_21.html">▶ Play TAG_21</a>
@@ -292,7 +312,7 @@
           <p>
             TAG_Holdem is a multiplayer Texas Hold'em poker experience designed for Android
             and web gameplay. The game features human and robot players, poker-table
-            presentation, chip betting, realistic hand flow, dynamic backgrounds, music,
+            presentation, chip betting, realistic hand flow, music,
             and casino-style play.
           </p>
           <a class="play-button" href="play_tag_holdem.html">▶ Play TAG_Holdem</a>
@@ -306,7 +326,7 @@
           <h2>TAG_YZ</h2>
           <p>
             TAG_YZ is a dice poker strategy game with human and robot players,
-            scorecard strategy, animated dice, music, custom backgrounds,
+            scorecard strategy, animated dice, music,
             history tracking, and polished TAG-style presentation.
           </p>
           <a class="play-button" href="play_tag_yz.html">▶ Play TAG_YZ</a>
@@ -344,47 +364,47 @@
     </footer>
   </div>
 
+  <div class="modal-overlay" id="aboutModal" role="dialog" aria-modal="true" aria-labelledby="aboutTitle">
+    <div class="modal-box">
+      <h2 id="aboutTitle">About TAG Enterprises LLC</h2>
+      <p>
+        TAG Enterprises LLC is an independent mobile and web game development studio focused on
+        polished, visually exciting, casino-style and strategy games.
+      </p>
+      <p>
+        Current TAG games include TAG_21, TAG_Holdem, and TAG_YZ. Future game areas include
+        Dominoes and Mahjong.
+      </p>
+      <p>
+        Our goal is to create games that are easy to start, enjoyable to replay, and polished
+        enough to feel at home on both phones and the web.
+      </p>
+      <div class="modal-actions">
+        <button class="modal-close" type="button" onclick="closeModal('aboutModal')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitTitle">
+    <div class="modal-box">
+      <h2 id="exitTitle">Exit Menu</h2>
+      <p>
+        Use the options below to leave this website screen. On some phones and computers,
+        browser security may prevent a website from closing the tab directly.
+      </p>
+      <div class="modal-actions">
+        <button class="modal-close" type="button" onclick="exitWebsite()">Exit to Phone / Computer Menu</button>
+        <button class="modal-close" type="button" onclick="scrollToTopAndClose()">Return to Top</button>
+        <button class="modal-close" type="button" onclick="closeModal('exitModal')">Cancel</button>
+      </div>
+      <div class="exit-warning" id="exitWarning">
+        Your browser did not allow this page to close automatically. Use your phone or computer Back,
+        Home, or Close button to return to your menu.
+      </div>
+    </div>
+  </div>
+
   <script>
-    const backgroundOverlay =
-      'linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.82))';
-
-    const defaultBackground = 'images/desert_sunset_panorama.png';
-    const backgroundStorageKey = 'tagEnterprisesSelectedBackground';
-
-    function applyBackground(imagePath) {
-      document.body.style.backgroundImage =
-        backgroundOverlay + ', url("' + imagePath + '")';
-    }
-
-    function markSelectedBackground(imagePath) {
-      document.querySelectorAll('.background-thumb').forEach(function(thumb) {
-        thumb.classList.remove('selected');
-
-        if (thumb.getAttribute('data-bg') === imagePath) {
-          thumb.classList.add('selected');
-        }
-      });
-    }
-
-    function setBackground(element, imagePath) {
-      applyBackground(imagePath);
-      localStorage.setItem(backgroundStorageKey, imagePath);
-
-      document.querySelectorAll('.background-thumb').forEach(function(thumb) {
-        thumb.classList.remove('selected');
-      });
-
-      element.classList.add('selected');
-    }
-
-    window.addEventListener('DOMContentLoaded', function() {
-      const savedBackground =
-        localStorage.getItem(backgroundStorageKey) || defaultBackground;
-
-      applyBackground(savedBackground);
-      markSelectedBackground(savedBackground);
-    });
-
     const tracks = [
       'audio/bg_track_1.mp3',
       'audio/bg_track_2.mp3',
@@ -477,6 +497,65 @@
         playNextTrack();
       }
     });
+
+    function openAbout() {
+      openModal('aboutModal');
+    }
+
+    function openExitMenu() {
+      const warning = document.getElementById('exitWarning');
+      if (warning) warning.style.display = 'none';
+      openModal('exitModal');
+    }
+
+    function openModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) modal.classList.add('open');
+    }
+
+    function closeModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) modal.classList.remove('open');
+    }
+
+    function scrollToTopAndClose() {
+      closeModal('exitModal');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function exitWebsite() {
+      try {
+        window.close();
+      } catch (error) {
+        console.log('Window close blocked:', error);
+      }
+
+      setTimeout(function() {
+        if (window.history.length > 1) {
+          window.history.back();
+          return;
+        }
+
+        const warning = document.getElementById('exitWarning');
+        if (warning) warning.style.display = 'block';
+      }, 250);
+    }
+
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeModal('aboutModal');
+        closeModal('exitModal');
+      }
+    });
+
+    document.querySelectorAll('.modal-overlay').forEach(function(overlay) {
+      overlay.addEventListener('click', function(event) {
+        if (event.target === overlay) {
+          overlay.classList.remove('open');
+        }
+      });
+    });
   </script>
 </body>
 </html>
+
