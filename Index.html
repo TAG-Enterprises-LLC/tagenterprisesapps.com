@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NEW TAG Enterprises LLC</title>
+  <title>TAG Enterprises LLC</title>
 
   <style>
     :root {
@@ -18,14 +18,7 @@
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
       color: var(--text);
-      background-image:
-        linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.82)),
-        url("images/desert_sunset_panorama.png");
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      background-repeat: no-repeat;
-      transition: background-image 0.4s ease;
+      background-color: #1e5631;
     }
 
     .site {
@@ -122,45 +115,6 @@
       margin-top: 12px;
       color: #d7f4ff;
       font-size: 18px;
-    }
-
-    .background-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 10px;
-    }
-
-    .background-thumb {
-      border: 3px solid rgba(255,255,255,0.2);
-      border-radius: 10px;
-      overflow: hidden;
-      cursor: pointer;
-      background: rgba(0,0,0,0.35);
-      transition: all 0.2s ease;
-    }
-
-    .background-thumb:hover {
-      transform: scale(1.03);
-      border-color: #40b6ff;
-    }
-
-    .background-thumb.selected {
-      border-color: #00ff48;
-      box-shadow: 0 0 18px #00ff48;
-    }
-
-    .background-thumb img {
-      width: 100%;
-      height: 70px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .background-label {
-      text-align: center;
-      padding: 6px;
-      font-size: 13px;
-      color: #e8f8ff;
     }
 
     .section-title {
@@ -304,14 +258,9 @@
       line-height: 1.4;
     }
 
-    @media (max-width: 1000px) {
-      .background-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-
     @media (max-width: 850px) {
       .game-card { grid-template-columns: 1fr; }
       .game-card img { min-height: 200px; }
-      .background-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -321,7 +270,7 @@
     <header>
       <h1>TAG Enterprises LLC</h1>
       <div class="subtitle">
-        Independent mobile game development studio creating polished and visually exciting games.
+        Independent mobile game development studio creating polished and visually exciting phone apps.
       </div>
     </header>
 
@@ -332,43 +281,9 @@
     </nav>
 
     <div class="controls-panel">
-      <h2>Website Controls</h2>
-
       <div class="music-controls">
         <button class="music-button" onclick="toggleMusic()">Play / Pause Music</button>
         <div id="musicStatus">Music Ready</div>
-      </div>
-
-      <div class="background-grid">
-        <div class="background-thumb selected" data-bg="images/desert_sunset_panorama.png" onclick="setBackground(this, 'images/desert_sunset_panorama.png')">
-          <img src="images/desert_sunset_panorama.png" alt="Desert" />
-          <div class="background-label">Desert</div>
-        </div>
-
-        <div class="background-thumb" data-bg="images/coral_reef_panorama.png" onclick="setBackground(this, 'images/coral_reef_panorama.png')">
-          <img src="images/coral_reef_panorama.png" alt="Coral" />
-          <div class="background-label">Coral</div>
-        </div>
-
-        <div class="background-thumb" data-bg="images/space_planets_panorama.png" onclick="setBackground(this, 'images/space_planets_panorama.png')">
-          <img src="images/space_planets_panorama.png" alt="Space" />
-          <div class="background-label">Space</div>
-        </div>
-
-        <div class="background-thumb" data-bg="images/waterfall_cliffs_panorama.png" onclick="setBackground(this, 'images/waterfall_cliffs_panorama.png')">
-          <img src="images/waterfall_cliffs_panorama.png" alt="Waterfall" />
-          <div class="background-label">Waterfall</div>
-        </div>
-
-        <div class="background-thumb" data-bg="images/wildflowers_panorama.png" onclick="setBackground(this, 'images/wildflowers_panorama.png')">
-          <img src="images/wildflowers_panorama.png" alt="Wildflowers" />
-          <div class="background-label">Wildflowers</div>
-        </div>
-
-        <div class="background-thumb" data-bg="images/winter_forest_panorama.png" onclick="setBackground(this, 'images/winter_forest_panorama.png')">
-          <img src="images/winter_forest_panorama.png" alt="Winter" />
-          <div class="background-label">Winter</div>
-        </div>
       </div>
     </div>
 
@@ -382,7 +297,7 @@
           <p>
             TAG_21 is a polished blackjack experience designed for Android and web gameplay.
             The game features smooth gameplay, intelligent dealer logic, multiplayer support,
-            robot opponents, customizable backgrounds, realistic casino-style presentation,
+            robot opponents, realistic casino-style presentation,
             chip betting systems, insurance handling, and immersive audio.
           </p>
           <a class="play-button" href="play_tag_21.html">▶ Play TAG_21</a>
@@ -397,7 +312,7 @@
           <p>
             TAG_Holdem is a multiplayer Texas Hold'em poker experience designed for Android
             and web gameplay. The game features human and robot players, poker-table
-            presentation, chip betting, realistic hand flow, dynamic backgrounds, music,
+            presentation, chip betting, realistic hand flow, music,
             and casino-style play.
           </p>
           <a class="play-button" href="play_tag_holdem.html">▶ Play TAG_Holdem</a>
@@ -411,7 +326,7 @@
           <h2>TAG_YZ</h2>
           <p>
             TAG_YZ is a dice poker strategy game with human and robot players,
-            scorecard strategy, animated dice, music, custom backgrounds,
+            scorecard strategy, animated dice, music,
             history tracking, and polished TAG-style presentation.
           </p>
           <a class="play-button" href="play_tag_yz.html">▶ Play TAG_YZ</a>
@@ -490,46 +405,6 @@
   </div>
 
   <script>
-    const backgroundOverlay =
-      'linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.82))';
-
-    const defaultBackground = 'images/desert_sunset_panorama.png';
-    const backgroundStorageKey = 'tagEnterprisesSelectedBackground';
-
-    function applyBackground(imagePath) {
-      document.body.style.backgroundImage =
-        backgroundOverlay + ', url("' + imagePath + '")';
-    }
-
-    function markSelectedBackground(imagePath) {
-      document.querySelectorAll('.background-thumb').forEach(function(thumb) {
-        thumb.classList.remove('selected');
-
-        if (thumb.getAttribute('data-bg') === imagePath) {
-          thumb.classList.add('selected');
-        }
-      });
-    }
-
-    function setBackground(element, imagePath) {
-      applyBackground(imagePath);
-      localStorage.setItem(backgroundStorageKey, imagePath);
-
-      document.querySelectorAll('.background-thumb').forEach(function(thumb) {
-        thumb.classList.remove('selected');
-      });
-
-      element.classList.add('selected');
-    }
-
-    window.addEventListener('DOMContentLoaded', function() {
-      const savedBackground =
-        localStorage.getItem(backgroundStorageKey) || defaultBackground;
-
-      applyBackground(savedBackground);
-      markSelectedBackground(savedBackground);
-    });
-
     const tracks = [
       'audio/bg_track_1.mp3',
       'audio/bg_track_2.mp3',
