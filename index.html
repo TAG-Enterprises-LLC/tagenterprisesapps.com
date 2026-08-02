@@ -10,6 +10,8 @@
       --panel: rgba(2, 10, 18, 0.82);
       --text: #ffffff;
       --green: #24e000;
+      --yellow: #ffd966;
+      --yellow-dark: #e0ad16;
     }
 
     * { box-sizing: border-box; }
@@ -44,12 +46,12 @@
       color: #d8f4ff;
     }
 
-    .top-menu {
+    .bottom-menu {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
       gap: 12px;
-      margin: 18px 0 28px;
+      margin: 32px 0 18px;
     }
 
     .menu-button {
@@ -59,10 +61,10 @@
       font-size: 18px;
       font-weight: bold;
       cursor: pointer;
-      color: white;
+      color: #000000;
       text-decoration: none;
-      background: linear-gradient(#00a2ff, #0054d6);
-      box-shadow: 0 0 16px rgba(0, 120, 255, 0.55);
+      background: linear-gradient(var(--yellow), var(--yellow-dark));
+      box-shadow: 0 0 14px rgba(255, 217, 102, 0.5);
       display: inline-block;
     }
 
@@ -274,12 +276,6 @@
       </div>
     </header>
 
-    <nav class="top-menu" aria-label="Website menu">
-      <button class="menu-button" type="button" onclick="openAbout()">About</button>
-      <a class="menu-button" href="privacy_policy.html">Privacy</a>
-      <button class="menu-button" type="button" onclick="openExitMenu()">Exit Menu</button>
-    </nav>
-
     <div class="controls-panel">
       <div class="music-controls">
         <button class="music-button" onclick="toggleMusic()">Play / Pause Music</button>
@@ -295,13 +291,12 @@
         <div class="game-info">
           <h2>TAG_21</h2>
           <p>
-            TAG_21 is a polished blackjack experience designed for Android and web gameplay.
+            TAG_21 is a polished blackjack experience designed for Android mobile devices.
             The game features smooth gameplay, intelligent dealer logic, multiplayer support,
             robot opponents, realistic casino-style presentation,
             chip betting systems, insurance handling, and immersive audio.
           </p>
-          <a class="play-button" href="play_tag_21.html">▶ Play TAG_21</a>
-          <div class="status">Web Version Available</div>
+          <div class="status">Mobile App — Web Play Not Available</div>
         </div>
       </div>
 
@@ -311,12 +306,11 @@
           <h2>TAG_Holdem</h2>
           <p>
             TAG_Holdem is a multiplayer Texas Hold'em poker experience designed for Android
-            and web gameplay. The game features human and robot players, poker-table
+            mobile devices. The game features human and robot players, poker-table
             presentation, chip betting, realistic hand flow, music,
             and casino-style play.
           </p>
-          <a class="play-button" href="play_tag_holdem.html">▶ Play TAG_Holdem</a>
-          <div class="status">Web Version Available</div>
+          <div class="status">Mobile App — Web Play Not Available</div>
         </div>
       </div>
 
@@ -359,6 +353,12 @@
       </div>
     </div>
 
+    <nav class="bottom-menu" aria-label="Website menu">
+      <button class="menu-button" type="button" onclick="openAbout()">About</button>
+      <a class="menu-button" href="privacy_policy.html">Privacy</a>
+      <button class="menu-button" type="button" onclick="openExitMenu()">Exit Menu</button>
+    </nav>
+
     <footer>
       © 2026 TAG Enterprises LLC. All rights reserved.
     </footer>
@@ -368,8 +368,8 @@
     <div class="modal-box">
       <h2 id="aboutTitle">About TAG Enterprises LLC</h2>
       <p>
-        TAG Enterprises LLC is an independent mobile and web game development studio focused on
-        polished, visually exciting, casino-style and strategy games.
+        TAG Enterprises LLC is an independent mobile game development studio focused on
+        polished, visually exciting games for adults and children.
       </p>
       <p>
         Current TAG games include TAG_21, TAG_Holdem, and TAG_YZ. Future game areas include
@@ -377,7 +377,8 @@
       </p>
       <p>
         Our goal is to create games that are easy to start, enjoyable to replay, and polished
-        enough to feel at home on both phones and the web.
+        enough to feel at home on phones and tablets. Selected children's games may also be
+        available to play on our website.
       </p>
       <div class="modal-actions">
         <button class="modal-close" type="button" onclick="closeModal('aboutModal')">Close</button>
@@ -557,5 +558,3 @@
     });
   </script>
 </body>
-</html>
-
