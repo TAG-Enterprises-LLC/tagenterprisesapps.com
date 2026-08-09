@@ -33,14 +33,141 @@
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
-  <!--
-    You can customize the "flutter_bootstrap.js" script.
-    This is useful to provide a custom configuration to the Flutter loader
-    or to give the user feedback during the initialization process.
+  <script>
+    (() => {
+      const stampedBuildId = '20260809T160221Z-4a5a7cc2338a';
+      const buildId = stampedBuildId.startsWith('__TAG_YZ_')
+        ? `development-${Date.now()}`
+        : stampedBuildId;
+      const cleanupKey = `tag-yz-worker-cleanup-${buildId}`;
+      let bootstrapStarted = false;
 
-    For more details:
-    * https://docs.flutter.dev/platform-integration/web/initialization
-  -->
-  <script src="flutter_bootstrap.js" async></script>
+      window.tagYzBuildId = buildId;
+
+      function loadBootstrap() {
+        if (bootstrapStarted) return;
+        bootstrapStarted = true;
+
+        const script = document.createElement('script');
+        script.src = `flutter_bootstrap.js?v=${encodeURIComponent(buildId)}`;
+        script.defer = true;
+        document.body.appendChild(script);
+      }
+
+      async function removeLegacyServiceWorkers() {
+        if (!('serviceWorker' in navigator)) return false;
+
+        const appPath = new URL(document.baseURI).pathname;
+        const registrations = await navigator.serviceWorker.getRegistrations();
+        const appRegistrations = registrations.filter((registration) => {
+          try {
+            return new URL(registration.scope).pathname.startsWith(appPath);
+          } catch (_) {
+            return false;
+          }
+        });
+        const hadController = navigator.serviceWorker.controller != null;
+        const results = await Promise.all(
+          appRegistrations.map((registration) => registration.unregister()),
+        );
+        return hadController || results.some(Boolean);
+      }
+
+      function showUpdateBanner(newBuildId) {
+        if (document.getElementById('tag-yz-update-banner')) return;
+
+        const banner = document.createElement('div');
+        banner.id = 'tag-yz-update-banner';
+        banner.style.cssText = [
+          'position:fixed',
+          'left:12px',
+          'right:12px',
+          'top:12px',
+          'z-index:2147483647',
+          'display:flex',
+          'align-items:center',
+          'justify-content:center',
+          'gap:12px',
+          'padding:12px 16px',
+          'border:2px solid #ffd700',
+          'border-radius:10px',
+          'background:#092719',
+          'color:#fff',
+          'font:700 15px Arial,sans-serif',
+          'box-shadow:0 4px 18px rgba(0,0,0,.55)',
+        ].join(';');
+
+        const message = document.createElement('span');
+        message.textContent = 'A new TAG_YZ version is available.';
+
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.textContent = 'Reload';
+        button.style.cssText = [
+          'border:0',
+          'border-radius:7px',
+          'padding:8px 14px',
+          'background:#ffd700',
+          'color:#111',
+          'font-weight:800',
+          'cursor:pointer',
+        ].join(';');
+        button.addEventListener('click', () => {
+          const url = new URL(window.location.href);
+          url.searchParams.set('v', newBuildId);
+          window.location.replace(url.toString());
+        });
+
+        banner.append(message, button);
+        document.body.appendChild(banner);
+      }
+
+      function startVersionChecks() {
+        async function checkVersion() {
+          try {
+            const response = await fetch(
+              `tag_yz_build.json?check=${Date.now()}`,
+              { cache: 'no-store' },
+            );
+            if (!response.ok) return;
+
+            const metadata = await response.json();
+            if (metadata.buildId && metadata.buildId !== buildId) {
+              showUpdateBanner(metadata.buildId);
+            }
+          } catch (_) {
+            // A temporary network failure must not prevent the game loading.
+          }
+        }
+
+        window.setInterval(checkVersion, 5 * 60 * 1000);
+        document.addEventListener('visibilitychange', () => {
+          if (document.visibilityState === 'visible') {
+            checkVersion();
+          }
+        });
+        checkVersion();
+      }
+
+      async function start() {
+        const removedWorker = await removeLegacyServiceWorkers();
+        if (removedWorker && sessionStorage.getItem(cleanupKey) !== buildId) {
+          sessionStorage.setItem(cleanupKey, buildId);
+          window.location.reload();
+          return;
+        }
+
+        sessionStorage.removeItem(cleanupKey);
+        loadBootstrap();
+        startVersionChecks();
+      }
+
+      start().catch((error) => {
+        console.warn('TAG_YZ web startup cleanup failed:', error);
+        loadBootstrap();
+        startVersionChecks();
+      });
+    })();
+  </script>
 </body>
 </html>
