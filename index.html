@@ -1,560 +1,785 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TAG Enterprises LLC</title>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore T&amp;G Enterprises mobile games, current releases, upcoming games, screenshots, and available web play.">
+  <title>T&amp;G Apps | Mobile Games</title>
   <style>
     :root {
-      --panel: rgba(2, 10, 18, 0.82);
-      --text: #ffffff;
-      --green: #24e000;
-      --yellow: #ffd966;
-      --yellow-dark: #e0ad16;
+      --gold: #ffd966;
+      --gold-dark: #d6a633;
+      --green: #063a25;
+      --green-deep: #031a11;
+      --green-bright: #0e6b43;
+      --ink: #f8fafc;
+      --muted: #d5e9df;
+      --panel: rgba(3, 26, 17, 0.91);
+      --panel-soft: rgba(6, 58, 37, 0.88);
+      --line: rgba(255, 217, 102, 0.52);
+      --page-image: none;
     }
 
     * { box-sizing: border-box; }
-
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
+      min-width: 320px;
+      color: var(--ink);
       font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background-color: #1e5631;
+      line-height: 1.55;
+      background:
+        linear-gradient(rgba(3, 26, 17, 0.74), rgba(3, 26, 17, 0.92)),
+        var(--page-image),
+        radial-gradient(circle at top, var(--green-bright), var(--green-deep) 70%);
+      background-attachment: fixed;
+      background-position: center;
+      background-size: cover;
     }
 
-    .site {
-      width: min(1200px, calc(100vw - 30px));
+    a { color: inherit; }
+    img { display: block; max-width: 100%; }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    :focus-visible { outline: 3px solid #8bdcff; outline-offset: 3px; }
+
+    .skip-link {
+      position: fixed;
+      left: 12px;
+      top: -60px;
+      z-index: 100;
+      padding: 10px 14px;
+      color: #081109;
+      background: var(--gold);
+      border-radius: 8px;
+      font-weight: 800;
+    }
+    .skip-link:focus { top: 12px; }
+
+    .site-shell {
+      width: min(1180px, calc(100% - 28px));
       margin: 0 auto;
-      padding: 18px 0 40px;
+      padding: 20px 0 40px;
     }
 
-    header {
+    .topbar {
+      position: sticky;
+      top: 10px;
+      z-index: 20;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      align-items: center;
+      gap: 18px;
+      padding: 12px 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(3, 26, 17, 0.95);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(10px);
+    }
+
+    .brand {
+      grid-column: 2;
+      justify-self: center;
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 21px;
+      font-weight: 900;
+      letter-spacing: 0.02em;
       text-align: center;
-      padding-bottom: 20px;
-      text-shadow: 0 0 12px #005eff;
+      white-space: nowrap;
     }
 
-    header h1 {
+    .topnav {
+      grid-column: 3;
+      justify-self: end;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .nav-link, .gold-button, .blue-button, .ghost-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 10px 16px;
+      border-radius: 9px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform 150ms ease, filter 150ms ease;
+    }
+    .nav-link:hover, .gold-button:hover, .blue-button:hover, .ghost-button:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.08);
+    }
+    .nav-link {
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--ink);
+      background: rgba(255,255,255,0.07);
+    }
+    .gold-button {
+      border: 1px solid #ffe79a;
+      color: #171308;
+      background: linear-gradient(#ffe99b, var(--gold-dark));
+      box-shadow: 0 0 18px rgba(255, 217, 102, 0.25);
+    }
+    .blue-button {
+      border: 1px solid #76d4ff;
+      color: #ffffff;
+      background: linear-gradient(#159fd8, #07579b);
+    }
+    .ghost-button {
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #ffffff;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      margin: 24px 0 34px;
+      padding: clamp(32px, 7vw, 76px) clamp(22px, 6vw, 68px);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background:
+        linear-gradient(120deg, rgba(3, 26, 17, 0.98), rgba(6, 58, 37, 0.78)),
+        url('images/space_planets_panorama.png') center / cover;
+      box-shadow: 0 22px 54px rgba(0,0,0,0.42);
+    }
+    .hero::after {
+      content: "T&G";
+      position: absolute;
+      right: -24px;
+      bottom: -72px;
+      color: rgba(255, 217, 102, 0.1);
+      font-size: clamp(150px, 25vw, 300px);
+      font-weight: 900;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--gold);
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      position: relative;
+      z-index: 1;
+      max-width: 820px;
       margin: 0;
-      font-size: clamp(40px, 6vw, 68px);
+      font-size: clamp(42px, 7vw, 78px);
+      line-height: 1.02;
+      letter-spacing: -0.035em;
+      text-shadow: 0 5px 24px rgba(0,0,0,0.45);
+    }
+    .hero-copy {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      margin: 20px 0 0;
+      color: #e3f4ec;
+      font-size: clamp(18px, 2vw, 23px);
+    }
+    .hero-actions {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 26px;
     }
 
-    .subtitle {
-      margin-top: 12px;
-      font-size: clamp(18px, 2vw, 24px);
-      color: #d8f4ff;
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin: 42px 0 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    .section-heading h2 {
+      margin: 0;
+      color: var(--gold);
+      font-size: clamp(30px, 4vw, 45px);
+      line-height: 1.1;
+    }
+    .section-heading p {
+      max-width: 620px;
+      margin: 0;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .apps-list { display: grid; gap: 24px; }
+    .app-card {
+      display: grid;
+      grid-template-columns: minmax(260px, 40%) 1fr;
+      gap: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--panel);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.34);
+    }
+    .app-visual {
+      position: relative;
+      min-height: 340px;
+      margin: 0;
+      background: #071b13;
+    }
+    .app-visual img {
+      width: 100%;
+      height: 100%;
+      min-height: 340px;
+      object-fit: cover;
+    }
+    .app-visual.artwork img { object-fit: contain; padding: 18px; }
+    .image-label {
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      margin: 0;
+      padding: 7px 10px;
+      border-radius: 7px;
+      color: #ffffff;
+      background: rgba(0,0,0,0.78);
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .app-copy { padding: clamp(22px, 4vw, 40px); }
+    .app-number {
+      color: #9ddfc1;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .app-copy h3 {
+      margin: 6px 0 12px;
+      color: #ffffff;
+      font-size: clamp(31px, 4vw, 48px);
+      line-height: 1.05;
+    }
+    .app-copy p { margin: 0 0 15px; color: #eef8f3; font-size: 17px; }
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px 18px;
+      margin: 18px 0;
+      padding: 0;
+      list-style: none;
+    }
+    .feature-list li {
+      position: relative;
+      padding-left: 19px;
+      color: #dcefe5;
+    }
+    .feature-list li::before {
+      content: "◆";
+      position: absolute;
+      left: 0;
+      top: 2px;
+      color: var(--gold);
+      font-size: 11px;
+    }
+    .app-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+    .availability {
+      display: inline-flex;
+      align-items: center;
+      min-height: 40px;
+      padding: 8px 12px;
+      border: 1px solid rgba(126, 224, 175, 0.45);
+      border-radius: 9px;
+      color: #9ff0c7;
+      background: rgba(32, 125, 77, 0.16);
+      font-weight: 800;
+    }
+
+    .production-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .production-card {
+      min-height: 230px;
+      padding: 22px;
+      border: 1px solid rgba(255, 217, 102, 0.36);
+      border-radius: 17px;
+      background: var(--panel-soft);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.26);
+    }
+    .production-card .symbol {
+      display: inline-grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      margin-bottom: 16px;
+      border: 1px solid var(--gold);
+      border-radius: 11px;
+      color: var(--gold);
+      background: rgba(255,217,102,0.08);
+      font-size: 24px;
+      font-weight: 900;
+    }
+    .production-card h3 { margin: 0 0 8px; color: #ffffff; font-size: 22px; }
+    .production-card p { margin: 0; color: #dceee4; }
+    .production-card .status-line {
+      margin-top: 14px;
+      color: #9ff0c7;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     .bottom-menu {
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
       gap: 12px;
-      margin: 32px 0 18px;
+      flex-wrap: wrap;
+      margin: 38px 0 22px;
+      padding-top: 26px;
+      border-top: 1px solid var(--line);
     }
+    footer { color: #cce4d8; text-align: center; }
 
-    .menu-button {
-      border: none;
-      border-radius: 8px;
-      padding: 12px 22px;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-      color: #000000;
-      text-decoration: none;
-      background: linear-gradient(var(--yellow), var(--yellow-dark));
-      box-shadow: 0 0 14px rgba(255, 217, 102, 0.5);
-      display: inline-block;
+    dialog {
+      width: min(720px, calc(100% - 28px));
+      max-height: 88vh;
+      padding: 0;
+      border: 2px solid var(--gold-dark);
+      border-radius: 18px;
+      color: #ffffff;
+      background: #061f15;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.72);
     }
-
-    .menu-button:hover {
-      filter: brightness(1.12);
-    }
-
-    .controls-panel, .game-card {
-      background: var(--panel);
-      border: 1px solid rgba(90, 180, 255, 0.45);
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    }
-
-    .controls-panel {
-      padding: 20px;
-      margin-bottom: 30px;
-    }
-
-    .controls-panel h2 {
-      margin-top: 0;
-      text-align: center;
-      color: #6cc8ff;
-      font-size: 32px;
-    }
-
-    .music-controls {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .music-button, .play-button {
-      background: linear-gradient(#00a2ff, #0054d6);
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 0 16px rgba(0, 120, 255, 0.55);
-    }
-
-    .music-button {
-      border: none;
-      border-radius: 8px;
-      padding: 14px 30px;
-      font-size: 20px;
-    }
-
-    .music-button:hover, .play-button:hover { filter: brightness(1.12); }
-
-    #musicStatus {
-      margin-top: 12px;
-      color: #d7f4ff;
-      font-size: 18px;
-    }
-
-    .section-title {
-      text-align: center;
-      color: #53b7ff;
-      font-size: clamp(30px, 4vw, 42px);
-      margin: 10px 0 28px;
-      text-shadow: 0 0 10px #003c83;
-    }
-
-    .games-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 24px;
-    }
-
-    .game-card {
-      display: grid;
-      grid-template-columns: 42% 1fr;
-      gap: 22px;
-      padding: 18px;
-    }
-
-    .game-card img {
-      width: 100%;
-      height: 100%;
-      min-height: 240px;
-      object-fit: cover;
-      border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.2);
-    }
-
-    .game-info h2 {
-      margin-top: 6px;
-      margin-bottom: 14px;
-      font-size: clamp(30px, 3vw, 42px);
-      color: white;
-    }
-
-    .game-info p {
-      margin: 0;
-      font-size: clamp(17px, 1.9vw, 23px);
-      line-height: 1.5;
-      color: #f0f8ff;
-    }
-
-    .play-button {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 14px 26px;
-      border-radius: 8px;
-      text-decoration: none;
+    dialog::backdrop { background: rgba(0,0,0,0.76); backdrop-filter: blur(4px); }
+    .dialog-inner { padding: 24px; }
+    .dialog-inner h2 { margin: 0 36px 8px 0; color: var(--gold); font-size: 30px; }
+    .dialog-inner p, .dialog-inner li { color: #e3f0e9; }
+    .dialog-close {
+      position: absolute;
+      right: 14px;
+      top: 12px;
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      color: #ffffff;
+      background: rgba(255,255,255,0.09);
       font-size: 22px;
     }
-
-    .status {
-      display: inline-block;
-      margin-top: 16px;
-      color: var(--green);
-      font-size: clamp(18px, 2vw, 24px);
-      font-weight: bold;
-    }
-
-    footer {
-      margin-top: 36px;
-      text-align: center;
-      font-size: 16px;
-      color: #d0eaff;
-    }
-
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 1000;
-      background: rgba(0,0,0,0.78);
-      padding: 18px;
-    }
-
-    .modal-overlay.open {
-      display: flex;
+    .setting-row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 18px;
       align-items: center;
-      justify-content: center;
+      padding: 15px 0;
+      border-top: 1px solid rgba(255,255,255,0.13);
     }
-
-    .modal-box {
-      width: min(720px, 96vw);
-      max-height: 88vh;
-      overflow-y: auto;
-      background: rgba(2, 10, 18, 0.96);
-      border: 2px solid rgba(90, 180, 255, 0.75);
-      border-radius: 16px;
-      box-shadow: 0 0 35px rgba(0, 120, 255, 0.55);
-      padding: 24px;
-      color: white;
-    }
-
-    .modal-box h2 {
-      margin-top: 0;
-      color: #6cc8ff;
-      font-size: 34px;
-      text-align: center;
-    }
-
-    .modal-box p,
-    .modal-box li {
-      font-size: 19px;
-      line-height: 1.5;
-      color: #f0f8ff;
-    }
-
-    .modal-actions {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 22px;
-    }
-
-    .modal-close {
-      border: none;
+    .setting-row label, .setting-row .row-label { color: #ffe89a; font-weight: 800; }
+    .toggle-line { display: flex; align-items: center; gap: 10px; }
+    input[type="range"] { width: min(100%, 320px); accent-color: var(--gold-dark); }
+    .theme-choices { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+    .theme-choice {
+      min-height: 42px;
+      padding: 8px;
+      border: 1px solid rgba(255,255,255,0.24);
       border-radius: 8px;
-      padding: 12px 22px;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-      color: white;
-      background: linear-gradient(#00a2ff, #0054d6);
+      color: #ffffff;
+      background: rgba(255,255,255,0.08);
     }
+    .theme-choice[aria-pressed="true"] { border-color: var(--gold); color: #171308; background: var(--gold); }
+    .dialog-actions { display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+    .exit-warning { display: none; padding: 12px; color: #fff0ac; background: rgba(255,217,102,0.1); border-radius: 9px; }
 
-    .exit-warning {
-      display: none;
-      margin-top: 14px;
-      padding: 12px;
-      border-radius: 10px;
-      background: rgba(255, 216, 107, 0.15);
-      border: 1px solid rgba(255, 216, 107, 0.8);
-      color: #fff1b8;
-      text-align: center;
-      font-size: 17px;
-      line-height: 1.4;
+    @media (max-width: 940px) {
+      .production-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .topbar { position: static; align-items: flex-start; }
+      .topnav { display: none; }
     }
-
-    @media (max-width: 850px) {
-      .game-card { grid-template-columns: 1fr; }
-      .game-card img { min-height: 200px; }
+    @media (max-width: 760px) {
+      .app-card { grid-template-columns: 1fr; }
+      .app-visual, .app-visual img { min-height: 250px; max-height: 440px; }
+      .feature-list { grid-template-columns: 1fr; }
+      .section-heading { align-items: flex-start; flex-direction: column; }
+      .section-heading p { text-align: left; }
+      .setting-row { grid-template-columns: 1fr; gap: 8px; }
+    }
+    @media (max-width: 520px) {
+      .site-shell { width: min(100% - 18px, 1180px); }
+      .hero { border-radius: 18px; }
+      .production-grid, .theme-choices { grid-template-columns: 1fr; }
+      .app-copy { padding: 20px; }
+      .brand { white-space: normal; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
   </style>
 </head>
-
 <body>
-  <div class="site" id="top">
-    <header>
-      <h1>TAG Enterprises LLC</h1>
-      <div class="subtitle">
-        Independent mobile app development studio.
-      </div>
+  <a class="skip-link" href="#main">Skip to apps</a>
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="#top">T&amp;G Enterprises LLC</a>
+      <nav class="topnav" aria-label="Primary navigation">
+        <a class="nav-link" href="#current-apps">Current Apps</a>
+        <a class="nav-link" href="#in-production">In Production</a>
+        <button class="gold-button" type="button" data-open-dialog="settingsDialog">Settings</button>
+      </nav>
     </header>
 
-    <div class="controls-panel">
-      <div class="music-controls">
-        <button class="music-button" onclick="toggleMusic()">Play / Pause Music</button>
-        <div id="musicStatus">Music Ready</div>
-      </div>
-    </div>
-
-    <h2 class="section-title">Featured Games</h2>
-
-    <div class="games-grid">
-      <div class="game-card">
-        <img src="images/tag21screenshot.jpg" alt="TAG_21 Screenshot" />
-        <div class="game-info">
-          <h2>TAG_21</h2>
-          <p>
-            TAG_21 is a blackjack game designed for Android mobile devices.
-            The game features intelligent dealer logic, multiplayer support,
-            robot opponents, casino-style presentation,
-            chip betting systems, insurance handling, and background music.
-          </p>
-          <div class="status">Mobile App — Web Play Not Available</div>
+    <main id="main">
+      <section class="hero" id="top">
+        <p class="eyebrow">Games for phones, tablets, and selected web browsers</p>
+        <h1>Play your table.<br>Share the fun.</h1>
+        <p class="hero-copy">T&amp;G Enterprises LLC creates replayable dice, card, and tile games with local human and robot play, private multi-phone rooms, helpful hints, music, and a consistent casino-inspired presentation.</p>
+        <div class="hero-actions">
+          <a class="gold-button" href="#current-apps">Explore Current Apps</a>
+          <a class="ghost-button" href="play_tag_yz.html">Play T&amp;G YZ on the Web</a>
         </div>
-      </div>
+      </section>
 
-      <div class="game-card">
-        <img src="images/tagholdemscreenshot.jpg" alt="TAG_Holdem Screenshot" />
-        <div class="game-info">
-          <h2>TAG_Holdem</h2>
-          <p>
-            TAG_Holdem is a multiplayer Texas Hold'em poker experience designed for Android
-            mobile devices. The game features human and robot players, poker-table
-            presentation, chip betting, realistic hand flow, music,
-            and casino-style play.
-          </p>
-          <div class="status">Mobile App — Web Play Not Available</div>
+      <section id="current-apps" aria-labelledby="current-heading">
+        <div class="section-heading">
+          <h2 id="current-heading">Current Apps</h2>
+          <p>Five distinct games, presented in the requested catalog order. Web play is offered only where noted.</p>
         </div>
-      </div>
 
-      <div class="game-card">
-        <img src="images/tag_yz_screenshot.png" alt="TAG_YZ Screenshot" />
-        <div class="game-info">
-          <h2>TAG_YZ</h2>
-          <p>
-            TAG_YZ is a dice poker strategy game with human and robot players,
-            scorecard strategy, animated dice, music,
-            history tracking, and TAG-style presentation.
-          </p>
-          <a class="play-button" href="play_tag_yz.html">▶ Play TAG_YZ</a>
-          <div class="status">Web Version Available</div>
+        <div class="apps-list">
+          <article class="app-card">
+            <figure class="app-visual">
+              <img src="images/tag_yz_screenshot.png" alt="T&amp;G YZ gameplay showing dice and its scorecard" loading="eager">
+              <figcaption class="image-label">Gameplay screenshot</figcaption>
+            </figure>
+            <div class="app-copy">
+              <div class="app-number">App 01</div>
+              <h3>T&amp;G YZ</h3>
+              <p>A five-dice scorecard strategy game for one to six players. Roll up to three times per turn, hold the dice you want to keep, and choose the best open scoring category. The expanded scorecard includes Ones through Sixes, Small and Large Straights, Full House, Two Pair, Three-, Four-, and Five-of-a-Kind, a Five-of-a-Kind bonus, and Oops as a flexible fallback.</p>
+              <p>Human and robot players can share one device, while private multi-phone games synchronize dice holds, rolls, scoring, turns, and final results. The strategy-based robot and Hint system evaluate open categories and fallback choices without knowing future rolls.</p>
+              <ul class="feature-list">
+                <li>1–6 players</li><li>Human and robot play</li>
+                <li>Private multi-phone rooms</li><li>Saved game history</li>
+                <li>Upper-section and Five-of-a-Kind bonuses</li><li>Music and celebrations</li>
+              </ul>
+              <div class="app-actions">
+                <a class="blue-button" href="play_tag_yz.html">▶ Play T&amp;G YZ</a>
+                <span class="availability">Web version available</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="app-card">
+            <figure class="app-visual">
+              <img src="images/tag21screenshot.jpg" alt="T&amp;G 21 blackjack gameplay with dealer and player cards" loading="lazy">
+              <figcaption class="image-label">Gameplay screenshot</figcaption>
+            </figure>
+            <div class="app-copy">
+              <div class="app-number">App 02</div>
+              <h3>T&amp;G 21</h3>
+              <p>A configurable blackjack simulation for one to six players. Place chip-based bets, receive hints based on the selected table rules, and choose Hit, Stand, Double, Split, Surrender, Insurance, or Even Money when legal. Player banks continue between games, named human results are recorded, and the shoe automatically reshuffles after the yellow cut card is reached.</p>
+              <p>Standard play supports human and robot opponents. Private multi-phone rooms are human-only, keep the dealer hole card and shoe protected by the server, and synchronize bets, hands, dealer play, results, and bankrolls across participating phones.</p>
+              <ul class="feature-list">
+                <li>1–6 players</li><li>Detailed casino rule settings</li>
+                <li>Chip betting and Repeat Bet</li><li>Hints and robot strategy</li>
+                <li>Private multi-phone rooms</li><li>History and continuing banks</li>
+              </ul>
+              <div class="app-actions">
+                <span class="availability">Mobile app — web play not offered</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="app-card">
+            <figure class="app-visual">
+              <img src="images/tagholdemscreenshot.jpg" alt="T&amp;G Holdem poker table with player cards and community cards" loading="lazy">
+              <figcaption class="image-label">Gameplay screenshot</figcaption>
+            </figure>
+            <div class="app-copy">
+              <div class="app-number">App 03</div>
+              <h3>T&amp;G Holdem</h3>
+              <p>A Texas Hold’em poker simulation for up to six players. Each player receives two private hole cards and forms the strongest five-card hand using the community cards revealed across the flop, turn, and river. Choose No Limit, Pot Limit, or Fixed Limit play, set blinds and antes, and manage bets with chips, Undo, Max Bet, and All In controls.</p>
+              <p>Local games include human and robot players with selectable action speed. Private multi-phone rooms are human-only and synchronize the dealer button, blinds, board, pot, turn, legal actions, side pots, showdown, and updated banks while limiting private cards to the controlling phone.</p>
+              <ul class="feature-list">
+                <li>Up to 6 players</li><li>No, Pot, or Fixed Limit</li>
+                <li>Selectable blinds and antes</li><li>Human and robot local play</li>
+                <li>Private multi-phone rooms</li><li>Hints, history, and music</li>
+              </ul>
+              <div class="app-actions">
+                <span class="availability">Mobile app — web play not offered</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="app-card">
+            <figure class="app-visual artwork">
+              <img src="https://raw.githubusercontent.com/TAG-Enterprises-LLC/TAG_Local_Code/main/dev/apps/tag_7_card_stud/assets/branding/tag_7_card_stud_phone_icon.png" alt="T&amp;G 7 Card Stud app artwork" loading="lazy">
+              <figcaption class="image-label">Temporary app artwork — gameplay screenshot to follow</figcaption>
+            </figure>
+            <div class="app-copy">
+              <div class="app-number">App 04</div>
+              <h3>T&amp;G 7 Card Stud</h3>
+              <p>A fixed-limit stud poker simulation for two to six players. There are no community cards: each player may receive seven cards—three private and four exposed—and uses the best five-card poker hand at showdown. The game handles antes, the low-card bring-in, small-bet and big-bet streets, configured raise limits, folds, split pots, and standard poker hand rankings.</p>
+              <p>Local pass-and-play supports human and robot opponents, with Player 1 always human. Private code-based multi-phone rooms keep each seat’s down cards private while synchronizing exposed cards, betting, turn order, and results.</p>
+              <ul class="feature-list">
+                <li>2–6 players</li><li>Fixed-limit betting</li>
+                <li>Seven cards; best five count</li><li>Human and robot play</li>
+                <li>Private multi-phone rooms</li><li>Custom ante and betting levels</li>
+              </ul>
+              <div class="app-actions">
+                <span class="availability">Mobile app — web play not offered</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="app-card">
+            <figure class="app-visual artwork">
+              <img src="https://raw.githubusercontent.com/TAG-Enterprises-LLC/TAG_Local_Code/main/dev/apps/tag_7_card_draw/assets/images/branding/7_card_draw_icon.png" alt="T&amp;G 7 Card Draw app artwork" loading="lazy">
+              <figcaption class="image-label">Temporary app artwork — gameplay screenshot to follow</figcaption>
+            </figure>
+            <div class="app-copy">
+              <div class="app-number">App 05</div>
+              <h3>T&amp;G 7 Card Draw</h3>
+              <p>A draw-poker game for two to six human or robot players. Each active player receives seven cards, selects cards to discard or stands pat, and uses the strongest five-card combination at showdown. Chip controls support opening bets, calls, a permitted raise, and folds while respecting the table limits and each player’s available bank.</p>
+              <p>The Hint and robot systems use statistical hand analysis without seeing hidden hands or future cards. Named human bank history and the last-used settings are saved. Human-only private multi-phone rooms protect each player’s cards while the server controls the deck, legal actions, replacement cards, and showdown.</p>
+              <ul class="feature-list">
+                <li>2–6 players</li><li>Seven cards; best five count</li>
+                <li>Draw or stand pat</li><li>Human and robot local play</li>
+                <li>Hints and saved history</li><li>Private multi-phone rooms</li>
+              </ul>
+              <div class="app-actions">
+                <span class="availability">Mobile app — web play not offered</span>
+              </div>
+            </div>
+          </article>
         </div>
-      </div>
+      </section>
 
-      <div class="game-card">
-        <img src="images/dominoes.png" alt="Dominoes" />
-        <div class="game-info">
-          <h2>Dominoes</h2>
-          <p>
-            Dominoes is planned as a future TAG Enterprises game area featuring classic tile
-            strategy, and TAG-style visual design.
-          </p>
-          <div class="status">Coming Soon</div>
+      <section id="in-production" aria-labelledby="production-heading">
+        <div class="section-heading">
+          <h2 id="production-heading">In Production</h2>
+          <p>These games are actively planned or being developed. Features may evolve before release.</p>
         </div>
-      </div>
-
-      <div class="game-card">
-        <img src="images/mahjong.png" alt="Mahjong" />
-        <div class="game-info">
-          <h2>Mahjong</h2>
-          <p>
-            Mahjong is planned as a future TAG Enterprises game area with tile-based strategy,
-            TAG-style visual design.
-          </p>
-          <div class="status">Coming Soon</div>
+        <div class="production-grid">
+          <article class="production-card"><span class="symbol" aria-hidden="true">5</span><h3>T&amp;G 5 Card Draw</h3><p>Classic draw poker centered on a single five-card hand, opening betting, one draw, final betting, and standard hand rankings.</p><div class="status-line">In production</div></article>
+          <article class="production-card"><span class="symbol" aria-hidden="true">●</span><h3>T&amp;G Dominoes</h3><p>A phone-friendly dominoes game built around matching tiles, blocking play, tactical scoring, and clear shared-table presentation.</p><div class="status-line">In production</div></article>
+          <article class="production-card"><span class="symbol" aria-hidden="true">萬</span><h3>T&amp;G Mahjong</h3><p>A mobile mahjong experience planned around tile recognition, set building, strategic discards, and approachable rules guidance.</p><div class="status-line">In production</div></article>
+          <article class="production-card"><span class="symbol" aria-hidden="true">♣</span><h3>T&amp;G Cribbage</h3><p>A cribbage game covering the deal, discard to the crib, pegging, hand counting, and the race to the winning score.</p><div class="status-line">In production</div></article>
+          <article class="production-card"><span class="symbol" aria-hidden="true">♥</span><h3>T&amp;G Hearts</h3><p>A trick-taking game focused on avoiding penalty cards, tracking played suits, and deciding when to attempt shooting the moon.</p><div class="status-line">In production</div></article>
+          <article class="production-card"><span class="symbol" aria-hidden="true">♠</span><h3>T&amp;G Spades</h3><p>A partnership trick-taking game planned around bidding, making contracts, managing bags, and coordinating through card play.</p><div class="status-line">In production</div></article>
+          <article class="production-card"><span class="symbol" aria-hidden="true">J</span><h3>T&amp;G Euchre</h3><p>A fast partnership card game covering trump selection, bowers, trick strategy, going alone, and concise round scoring.</p><div class="status-line">In production</div></article>
+          <article class="production-card"><span class="symbol" aria-hidden="true">⚄</span><h3>T&amp;G Farkle</h3><p>A push-your-luck dice game planned around scoring combinations, banking points, reroll decisions, and the risk of a scoreless turn.</p><div class="status-line">In production</div></article>
         </div>
-      </div>
-    </div>
+      </section>
 
-    <nav class="bottom-menu" aria-label="Website menu">
-      <button class="menu-button" type="button" onclick="openAbout()">About</button>
-      <a class="menu-button" href="privacy_policy.html">Privacy</a>
-      <button class="menu-button" type="button" onclick="openExitMenu()">Exit Menu</button>
-    </nav>
+      <nav class="bottom-menu" aria-label="Website menu">
+        <button class="gold-button" type="button" data-open-dialog="settingsDialog">Settings</button>
+        <button class="gold-button" type="button" data-open-dialog="aboutDialog">About</button>
+        <a class="gold-button" href="privacy_policy.html">Privacy</a>
+        <button class="gold-button" type="button" data-open-dialog="exitDialog">Exit Menu</button>
+      </nav>
+    </main>
 
-    <footer>
-      © 2026 TAG Enterprises LLC. All rights reserved.
-    </footer>
+    <footer>© 2026 T&amp;G Enterprises LLC. All rights reserved. Games are for entertainment and do not offer real-money gambling, prizes, wagers, or cash-out functionality.</footer>
   </div>
 
-  <div class="modal-overlay" id="aboutModal" role="dialog" aria-modal="true" aria-labelledby="aboutTitle">
-    <div class="modal-box">
-      <h2 id="aboutTitle">About TAG Enterprises LLC</h2>
-      <p>
-        TAG Enterprises LLC is an independent mobile game development studio focused on
-        polished, visually exciting games for adults and children.
-      </p>
-      <p>
-        Current TAG games include TAG_21, TAG_Holdem, and TAG_YZ. Future game areas include
-        Dominoes and Mahjong.
-      </p>
-      <p>
-        Our goal is to create games that are easy to start, enjoyable to replay, and polished
-        enough to feel at home on phones and tablets. Selected children's games may also be
-        available to play on our website.
-      </p>
-      <div class="modal-actions">
-        <button class="modal-close" type="button" onclick="closeModal('aboutModal')">Close</button>
+  <dialog id="settingsDialog" aria-labelledby="settingsDialogTitle">
+    <div class="dialog-inner">
+      <button class="dialog-close" type="button" data-close-dialog aria-label="Close settings">×</button>
+      <h2 id="settingsDialogTitle">Website Settings</h2>
+      <p>Choose the homepage background and music preferences for this browser. Your selections are saved on this device.</p>
+      <div class="setting-row">
+        <span class="row-label">Background</span>
+        <div class="theme-choices" id="themeChoices">
+          <button class="theme-choice" type="button" data-theme="felt">Green Felt</button>
+          <button class="theme-choice" type="button" data-theme="coral">Coral Reef</button>
+          <button class="theme-choice" type="button" data-theme="desert">Desert Sunset</button>
+          <button class="theme-choice" type="button" data-theme="forest">Winter Forest</button>
+          <button class="theme-choice" type="button" data-theme="space">Space</button>
+          <button class="theme-choice" type="button" data-theme="wildflowers">Wildflowers</button>
+        </div>
+      </div>
+      <div class="setting-row">
+        <label for="musicToggle">Background music</label>
+        <div class="toggle-line"><input id="musicToggle" type="checkbox"><span id="musicStatus">Off</span></div>
+      </div>
+      <div class="setting-row">
+        <label for="volumeSlider">Music volume</label>
+        <div><input id="volumeSlider" type="range" min="0" max="100" step="5" value="55"><output id="volumeOutput" for="volumeSlider">55%</output></div>
+      </div>
+      <div class="dialog-actions">
+        <button class="ghost-button" id="resetWebsiteSettings" type="button">Reset Website Settings</button>
+        <button class="gold-button" type="button" data-close-dialog>Done</button>
       </div>
     </div>
-  </div>
+  </dialog>
 
-  <div class="modal-overlay" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitTitle">
-    <div class="modal-box">
-      <h2 id="exitTitle">Exit Menu</h2>
-      <p>
-        Use the options below to leave this website screen. On some phones and computers,
-        browser security may prevent a website from closing the tab directly.
-      </p>
-      <div class="modal-actions">
-        <button class="modal-close" type="button" onclick="exitWebsite()">Exit to Phone / Computer Menu</button>
-        <button class="modal-close" type="button" onclick="scrollToTopAndClose()">Return to Top</button>
-        <button class="modal-close" type="button" onclick="closeModal('exitModal')">Cancel</button>
-      </div>
-      <div class="exit-warning" id="exitWarning">
-        Your browser did not allow this page to close automatically. Use your phone or computer Back,
-        Home, or Close button to return to your menu.
-      </div>
+  <dialog id="aboutDialog" aria-labelledby="aboutDialogTitle">
+    <div class="dialog-inner">
+      <button class="dialog-close" type="button" data-close-dialog aria-label="Close about information">×</button>
+      <h2 id="aboutDialogTitle">About T&amp;G Enterprises LLC</h2>
+      <p>T&amp;G Enterprises LLC is an independent mobile app development studio in San Antonio, Texas. We create replayable games for adults and children with consistent controls, clear instructions, local human and robot play, and private multi-phone play where supported.</p>
+      <p>Our current catalog includes T&amp;G YZ, T&amp;G 21, T&amp;G Holdem, T&amp;G 7 Card Stud, and T&amp;G 7 Card Draw. Additional card, dice, and tile games are in production.</p>
+      <div class="dialog-actions"><button class="gold-button" type="button" data-close-dialog>Close</button></div>
     </div>
-  </div>
+  </dialog>
+
+  <dialog id="exitDialog" aria-labelledby="exitDialogTitle">
+    <div class="dialog-inner">
+      <button class="dialog-close" type="button" data-close-dialog aria-label="Close exit menu">×</button>
+      <h2 id="exitDialogTitle">Exit Menu</h2>
+      <p>Choose an option below. Browsers may prevent a website from closing a tab that the website did not open.</p>
+      <div class="dialog-actions">
+        <button class="gold-button" id="exitWebsite" type="button">Exit to Phone / Computer Menu</button>
+        <button class="ghost-button" id="returnTop" type="button">Return to Top</button>
+        <button class="ghost-button" type="button" data-close-dialog>Cancel</button>
+      </div>
+      <p class="exit-warning" id="exitWarning">Your browser did not allow this page to close automatically. Use the browser Back, Home, or Close control.</p>
+    </div>
+  </dialog>
 
   <script>
-    const tracks = [
-      'audio/bg_track_1.mp3',
-      'audio/bg_track_2.mp3',
-      'audio/bg_track_3.mp3',
-      'audio/bg_track_4.mp3',
-      'audio/bg_track_5.mp3',
-      'audio/bg_track_6.mp3',
-      'audio/bg_track_7.mp3',
-      'audio/bg_track_8.mp3'
-    ];
+    (function () {
+      'use strict';
 
-    let audio = new Audio();
-    let musicPlaying = false;
-    let currentTrack = '';
-    let failedTracks = new Set();
+      const themes = {
+        felt: 'none',
+        coral: "url('images/coral_reef_panorama.png')",
+        desert: "url('images/desert_sunset_panorama.png')",
+        forest: "url('images/winter_forest_panorama.png')",
+        space: "url('images/space_planets_panorama.png')",
+        wildflowers: "url('images/wildflowers_panorama.png')"
+      };
+      const tracks = [2, 3, 4, 5, 6, 7, 8, 9].map(function (n) { return 'audio/bg_track_' + n + '.mp3'; });
+      const defaultSettings = { theme: 'felt', music: false, volume: 55 };
+      const audio = new Audio();
+      let currentTrack = '';
+      let unavailableTracks = new Set();
+      let preferences = loadPreferences();
 
-    audio.preload = 'auto';
+      function loadPreferences() {
+        try {
+          const saved = JSON.parse(localStorage.getItem('tgWebsiteSettings') || 'null');
+          return Object.assign({}, defaultSettings, saved || {});
+        } catch (_) {
+          return Object.assign({}, defaultSettings);
+        }
+      }
 
-    function updateMusicStatus(text) {
-      const status = document.getElementById('musicStatus');
-      if (status) status.textContent = text;
-    }
+      function savePreferences() {
+        try { localStorage.setItem('tgWebsiteSettings', JSON.stringify(preferences)); } catch (_) {}
+      }
 
-    function availableTracks() {
-      return tracks.filter(function(track) {
-        return !failedTracks.has(track);
+      function applyTheme(name) {
+        preferences.theme = themes[name] ? name : 'felt';
+        document.documentElement.style.setProperty('--page-image', themes[preferences.theme]);
+        document.querySelectorAll('[data-theme]').forEach(function (button) {
+          button.setAttribute('aria-pressed', String(button.dataset.theme === preferences.theme));
+        });
+        savePreferences();
+      }
+
+      function updateAudioLabels() {
+        const toggle = document.getElementById('musicToggle');
+        const status = document.getElementById('musicStatus');
+        const slider = document.getElementById('volumeSlider');
+        const output = document.getElementById('volumeOutput');
+        toggle.checked = Boolean(preferences.music);
+        status.textContent = preferences.music ? 'On' : 'Off';
+        slider.value = String(preferences.volume);
+        output.textContent = preferences.volume + '%';
+      }
+
+      function pickTrack() {
+        let choices = tracks.filter(function (track) { return !unavailableTracks.has(track) && track !== currentTrack; });
+        if (!choices.length) {
+          unavailableTracks.clear();
+          choices = tracks.filter(function (track) { return track !== currentTrack; });
+        }
+        return choices[Math.floor(Math.random() * choices.length)] || tracks[0];
+      }
+
+      function playNextTrack() {
+        currentTrack = pickTrack();
+        audio.src = currentTrack;
+        audio.volume = preferences.volume / 100;
+        audio.play().catch(function () {
+          preferences.music = false;
+          updateAudioLabels();
+          savePreferences();
+        });
+      }
+
+      function setMusic(enabled) {
+        preferences.music = enabled;
+        if (enabled) playNextTrack(); else audio.pause();
+        updateAudioLabels();
+        savePreferences();
+      }
+
+      audio.addEventListener('ended', function () { if (preferences.music) playNextTrack(); });
+      audio.addEventListener('error', function () {
+        if (currentTrack) unavailableTracks.add(currentTrack);
+        if (preferences.music) playNextTrack();
       });
-    }
 
-    function pickNextTrack() {
-      let usableTracks = availableTracks();
-
-      if (usableTracks.length === 0) {
-        failedTracks.clear();
-        usableTracks = tracks.slice();
-      }
-
-      let choices = usableTracks.filter(function(track) {
-        return track !== currentTrack;
+      document.querySelectorAll('[data-open-dialog]').forEach(function (button) {
+        button.addEventListener('click', function () {
+          const dialog = document.getElementById(button.dataset.openDialog);
+          if (dialog && typeof dialog.showModal === 'function') dialog.showModal();
+        });
       });
-
-      if (choices.length === 0) {
-        choices = usableTracks;
-      }
-
-      return choices[Math.floor(Math.random() * choices.length)];
-    }
-
-    function playNextTrack() {
-      const nextTrack = pickNextTrack();
-      currentTrack = nextTrack;
-      audio.src = nextTrack;
-
-      const playPromise = audio.play();
-
-      if (playPromise !== undefined) {
-        playPromise
-          .then(function() {
-            updateMusicStatus('Playing: ' + nextTrack.replace('audio/', ''));
-          })
-          .catch(function(error) {
-            updateMusicStatus('Click Play / Pause Music again to start music');
-            console.log('Audio play blocked or failed:', error);
-          });
-      }
-    }
-
-    function toggleMusic() {
-      if (!musicPlaying) {
-        musicPlaying = true;
-        playNextTrack();
-      } else {
-        musicPlaying = false;
+      document.querySelectorAll('[data-close-dialog]').forEach(function (button) {
+        button.addEventListener('click', function () { button.closest('dialog').close(); });
+      });
+      document.querySelectorAll('dialog').forEach(function (dialog) {
+        dialog.addEventListener('click', function (event) {
+          if (event.target === dialog) dialog.close();
+        });
+      });
+      document.querySelectorAll('[data-theme]').forEach(function (button) {
+        button.addEventListener('click', function () { applyTheme(button.dataset.theme); });
+      });
+      document.getElementById('musicToggle').addEventListener('change', function (event) { setMusic(event.target.checked); });
+      document.getElementById('volumeSlider').addEventListener('input', function (event) {
+        preferences.volume = Number(event.target.value);
+        audio.volume = preferences.volume / 100;
+        updateAudioLabels();
+        savePreferences();
+      });
+      document.getElementById('resetWebsiteSettings').addEventListener('click', function () {
+        preferences = Object.assign({}, defaultSettings);
         audio.pause();
-        updateMusicStatus('Music Paused');
-      }
-    }
-
-    audio.addEventListener('ended', function() {
-      if (musicPlaying) playNextTrack();
-    });
-
-    audio.addEventListener('error', function() {
-      if (currentTrack) {
-        failedTracks.add(currentTrack);
-        console.log('Skipping missing or unreadable track:', currentTrack);
-      }
-
-      if (musicPlaying) {
-        playNextTrack();
-      }
-    });
-
-    function openAbout() {
-      openModal('aboutModal');
-    }
-
-    function openExitMenu() {
-      const warning = document.getElementById('exitWarning');
-      if (warning) warning.style.display = 'none';
-      openModal('exitModal');
-    }
-
-    function openModal(id) {
-      const modal = document.getElementById(id);
-      if (modal) modal.classList.add('open');
-    }
-
-    function closeModal(id) {
-      const modal = document.getElementById(id);
-      if (modal) modal.classList.remove('open');
-    }
-
-    function scrollToTopAndClose() {
-      closeModal('exitModal');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function exitWebsite() {
-      try {
-        window.close();
-      } catch (error) {
-        console.log('Window close blocked:', error);
-      }
-
-      setTimeout(function() {
-        if (window.history.length > 1) {
-          window.history.back();
-          return;
-        }
-
-        const warning = document.getElementById('exitWarning');
-        if (warning) warning.style.display = 'block';
-      }, 250);
-    }
-
-    document.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape') {
-        closeModal('aboutModal');
-        closeModal('exitModal');
-      }
-    });
-
-    document.querySelectorAll('.modal-overlay').forEach(function(overlay) {
-      overlay.addEventListener('click', function(event) {
-        if (event.target === overlay) {
-          overlay.classList.remove('open');
-        }
+        applyTheme(preferences.theme);
+        updateAudioLabels();
+        savePreferences();
       });
-    });
+      document.getElementById('returnTop').addEventListener('click', function () {
+        document.getElementById('exitDialog').close();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      document.getElementById('exitWebsite').addEventListener('click', function () {
+        const warning = document.getElementById('exitWarning');
+        warning.style.display = 'none';
+        try { window.close(); } catch (_) {}
+        window.setTimeout(function () {
+          if (window.history.length > 1) window.history.back();
+          else warning.style.display = 'block';
+        }, 300);
+      });
+
+      applyTheme(preferences.theme);
+      updateAudioLabels();
+    }());
   </script>
 </body>
+</html>
