@@ -14,10 +14,16 @@ the package directory.
 Before opening a pull request, review the files changed from the base branch:
 
 ```sh
-git diff --numstat BASE...HEAD
+scripts/check-pr-text-only.sh BASE
 ```
 
-A binary change is displayed with `-` in place of the added and removed line
-counts. Remove that file from the branch and make the equivalent source-only
-change instead. Existing images and WebAssembly files are needed by the deployed
-site, but source-only pull requests should not modify them.
+The check exits unsuccessfully and lists every binary file in the complete
+branch diff. Remove each listed file from the branch and make the equivalent
+source-only change instead. Existing images and WebAssembly files are needed by
+the deployed site, but source-only pull requests should not modify them.
+
+Changing `.gitattributes` or adding Git LFS does not make an already-created
+binary patch acceptable to the pull-request service. If a task already reports
+`Binary files are not supported`, start a new branch from the updated base,
+reapply only the text changes, run the check above, and create the pull request
+from that clean branch.
