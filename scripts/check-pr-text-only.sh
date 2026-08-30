@@ -14,7 +14,10 @@ while IFS= read -r -d '' entry; do
   if [[ $additions == - || $deletions == - ]]; then
     binary_files+=("$path")
   fi
-done < <(git diff --numstat -z "$base"...HEAD)
+# Compare the base directly with the current working tree. Unlike a
+# base...HEAD comparison, this also examines staged and unstaged changes, so
+# the required pre-commit invocation can catch a binary before it is committed.
+done < <(git diff --no-renames --numstat -z "$base" --)
 
 if ((${#binary_files[@]})); then
   printf 'Pull request contains unsupported binary changes:\n' >&2
@@ -23,4 +26,4 @@ if ((${#binary_files[@]})); then
   exit 1
 fi
 
-printf 'OK: %s...HEAD contains text changes only.\n' "$base"
+printf 'OK: changes since %s contain text changes only.\n' "$base"

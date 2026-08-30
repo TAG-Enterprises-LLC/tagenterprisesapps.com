@@ -24,6 +24,11 @@ Immediately before committing and again before creating a pull request, run:
 scripts/check-pr-text-only.sh HEAD^
 ```
 
+Before the pre-commit check, stage every intended change (including new files)
+with `git add`. Git cannot inspect untracked files until they are staged. The
+check compares the supplied base with the current working tree, so it covers
+committed, staged, and unstaged changes together.
+
 When the task spans multiple commits, replace `HEAD^` with the actual base
 commit. If the check reports a binary path, restore that path from the base and
 commit only the source changes. Never create a pull request until the check
