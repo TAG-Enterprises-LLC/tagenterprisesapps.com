@@ -19,20 +19,20 @@
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="description" content="T-G-Apps YZ, a dice scorecard strategy game from T-G-Apps LLC.">
   <link rel="stylesheet" href="../packages/device-display-optimizer/device-display-optimizer.css">
   <script src="../packages/device-display-optimizer/device-display-optimizer.js"></script>
 
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="tag_yz">
+  <meta name="apple-mobile-web-app-title" content="T-G-Apps YZ">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title>tag_yz</title>
+  <title>T-G-Apps YZ</title>
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
@@ -101,7 +101,7 @@
         ].join(';');
 
         const message = document.createElement('span');
-        message.textContent = 'A new TAG_YZ version is available.';
+        message.textContent = 'A new T-G-Apps YZ version is available.';
 
         const button = document.createElement('button');
         button.type = 'button';
@@ -166,7 +166,7 @@
       }
 
       start().catch((error) => {
-        console.warn('TAG_YZ web startup cleanup failed:', error);
+        console.warn('T-G-Apps YZ web startup cleanup failed:', error);
         loadBootstrap();
         startVersionChecks();
       });
