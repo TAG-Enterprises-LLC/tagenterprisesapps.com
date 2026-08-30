@@ -1,0 +1,2 @@
+# Store new binary assets in binary-assets/ so pull requests contain LFS pointers.
+binary-assets/** filter=lfs diff=lfs merge=lfs -text
