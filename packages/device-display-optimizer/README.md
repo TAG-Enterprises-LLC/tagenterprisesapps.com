@@ -16,6 +16,10 @@ but not the exact hardware generation. Apps must treat `Unknown` as valid.
 <script src="/packages/device-display-optimizer/device-display-optimizer.js"></script>
 ```
 
+The files in this directory are the distributable package. Copy the directory or
+reference it as shown above; do not create or commit a ZIP or other binary archive.
+This keeps package updates compatible with text-only pull-request workflows.
+
 The package sets `data-tg-manufacturer`, `data-tg-model`, and `data-tg-platform`
 on `<html>`, plus screen-size/orientation classes and viewport/safe-area CSS
 variables. `TGAppsDeviceOptimizer.ready` resolves to the enhanced profile. Listen
