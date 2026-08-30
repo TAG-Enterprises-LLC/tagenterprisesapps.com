@@ -1,2 +1,18 @@
-# Store new binary assets in binary-assets/ so pull requests contain LFS pointers.
-binary-assets/** filter=lfs diff=lfs merge=lfs -text
+# Keep source changes reviewable by PR systems that reject binary patches.
+*.css  text eol=lf
+*.html text eol=lf
+*.js   text eol=lf
+*.json text eol=lf
+*.md   text eol=lf
+
+# The device optimizer is distributed as source. Do not package it in a ZIP,
+# tarball, or Git LFS object; consumers load these files directly.
+packages/device-display-optimizer/** text eol=lf
+
+# Existing deployed media and WebAssembly files are binary. Avoid changing
+# them in source-only pull requests.
+*.ico  binary
+*.jpg  binary
+*.jpeg binary
+*.png  binary
+*.wasm binary

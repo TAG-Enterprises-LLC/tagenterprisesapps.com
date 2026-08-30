@@ -1,15 +1,23 @@
 # Contributing
 
-## Binary assets
+## Pull-request file support
 
-This repository uses [Git Large File Storage (Git LFS)](https://git-lfs.com/) for new binary assets. Git LFS stores a small text pointer in Git while the binary content is uploaded separately, so pull requests contain reviewable pointer changes instead of unsupported binary patches.
+The pull-request service used for this repository accepts text patches but does
+not accept binary files. Git LFS does not remove that limitation: it requires a
+separate LFS upload and leaves the pull request dependent on an external object.
 
-Before adding a binary asset:
+Keep reusable browser packages, including the T-G-Apps Device Display Optimizer,
+as their unpacked source files. Do not commit a ZIP, tarball, generated package,
+or LFS pointer for them. Consumers can load the CSS and JavaScript directly from
+the package directory.
 
-1. Install Git LFS using the instructions for your operating system.
-2. Enable it for your account with `git lfs install`.
-3. Place the new file under `binary-assets/`. The rule in `.gitattributes` will manage it automatically.
-4. Add and commit the asset normally.
-5. Run `git lfs ls-files` and confirm the asset is listed before opening a pull request.
+Before opening a pull request, review the files changed from the base branch:
 
-Do not modify or replace the legacy binary files in their current locations in a pull request. Instead, add the replacement under `binary-assets/` and update text-based application references in the same commit. This keeps the pull request itself free of unsupported binary patches while preserving the existing deployed assets.
+```sh
+git diff --numstat BASE...HEAD
+```
+
+A binary change is displayed with `-` in place of the added and removed line
+counts. Remove that file from the branch and make the equivalent source-only
+change instead. Existing images and WebAssembly files are needed by the deployed
+site, but source-only pull requests should not modify them.
