@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "game": "rummy",
+    "variant": "default",
+    "rules_key": "R:n=mixed;hs=0;ace=low;take=top;lo=any;tb=1;god=0;kn=0;sc=wt;rb=0;rf=6;fm=0;t=100",
+    "trained": "2026-10-07T18:56:36",
+    "git": "e1eeb51",
+    "evaluation": {
+      "vs": "previous",
+      "n": 6000,
+      "mean": 1.079613888888886,
+      "se": 0.1573242549777509,
+      "ci95": [
+        0.7712583491324942,
+        1.3879694286452777
+      ],
+      "z": 6.862348650826708,
+      "p_better": 3.3868745368225943e-12
+    },
+    "note": "2-4 players. CMA-ES (mixed 2-6 players, the app robot in the league), 80 generations. Policy vs app robot: +2.77 (2p), +2.09 (4p); Expert(300) vs Expert with hand-written weights: +0.66 (2p), +2.63 +/- 1.53 (4p), -1.46 +/- 1.59 (6p: not used there, see large.json)."
+  },
+  "draw": {
+    "bias": -2.4866868471936505,
+    "gain": 0.24018012517764692,
+    "stock_gain": -0.33195860959743245,
+    "completes_meld": 5.309184164553391,
+    "new_outs": 2.19667589434925,
+    "top_points": -0.13490683030482556,
+    "stock_hit": 1.0684199759544857,
+    "top_near": -1.5784834982955753
+  },
+  "play": {
+    "goes_out": 49.40369695432402,
+    "points_in_hand": 0.9639372580665747,
+    "deadwood": -1.020088775766492,
+    "cards_left": -0.8248983832893345,
+    "outs": 0.8142990823558377,
+    "risk": -2.25195028503342,
+    "spots_given": 0.046222850080211486,
+    "discard_feeds_next": -1.1875380707791425,
+    "discard_lays_off": -1.2292615717629434,
+    "discard_dead": 1.163119649794262,
+    "discard_points": -0.5699236270842262,
+    "melds_held": -0.49478696292219115,
+    "loose_points": -1.5310303839473927,
+    "near_points": -1.0314723276589992,
+    "loose_cards": -0.6244046186980228,
+    "race_loose": 0.14698847670747225,
+    "race_outs": 2.3622231309730854
+  },
+  "params": {}
+}
