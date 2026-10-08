@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cách chơi 42</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 16px;
+      background: #f6f1e4;
+      color: #111827;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 16px;
+      line-height: 1.45;
+    }
+
+    .tag-policy-page {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero,
+    .card {
+      display: block;
+      width: auto;
+      margin: 0 0 14px 0;
+      padding: 14px;
+      border: 1px solid #d6a633;
+      border-radius: 12px;
+      background: #ffffff;
+    }
+
+    .hero {
+      background: #063a25;
+      color: #ffffff;
+    }
+
+    .badge {
+      display: none;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0 0 10px 0;
+      color: #063a25;
+    }
+
+    .hero h1,
+    .hero h2 {
+      color: #ffd966;
+    }
+
+    p {
+      margin: 0 0 10px 0;
+    }
+
+    ul {
+      margin: 0 0 10px 22px;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 5px;
+    }
+
+    a {
+      color: #0b63ce;
+      word-break: break-word;
+    }
+
+    .contact-email {
+      font-size: 15px;
+    }
+
+    .footer {
+      text-align: center;
+      color: #ffffff;
+      background: #063a25;
+      padding: 12px;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="tag-policy-page">
+
+    <section class="hero">
+      <h1>T-G-Apps LLC</h1>
+      <h2>Cách chơi 42</h2>
+      <p class="subtitle">Texas 42: trò chơi ăn lượt chơi bằng quân domino.</p>
+    </section>
+
+    <section class="card accent">
+      <h3>Mục tiêu</h3>
+      <p>42 được chơi bởi bốn người chia thành hai đội. Đồng đội ngồi đối diện nhau: người chơi 1 và 3 đấu với người chơi 2 và 4. Các đội giành <strong>mark</strong> bằng cách hoàn thành mức đặt. Đội đầu tiên đạt tổng số mark đặt trong Cài đặt (mặc định là 7) sẽ thắng.</p>
+    </section>
+
+    <section class="card">
+      <h3>Các quân domino</h3>
+      <p>Trò chơi dùng bộ domino đôi-sáu gồm 28 quân. Mỗi người được chia 7 quân. Mỗi ván có giá trị 42 điểm: 1 điểm cho mỗi lượt trong 7 lượt, cộng với các <strong>quân tính điểm</strong>:</p><ul><li>5-5 và 6-4 &ndash; mỗi quân 10 điểm</li><li>5-0, 4-1 và 3-2 &ndash; mỗi quân 5 điểm</li></ul>
+    </section>
+
+    <section class="card">
+      <h3>Đặt giá</h3>
+      <p>Bắt đầu từ người bên trái nhà cái, mỗi người đặt giá một lần hoặc bỏ lượt. Mức đặt cho biết số điểm đội bạn hứa sẽ giành được, từ 30 đến 41. Mức <strong>42</strong> hứa thắng mọi lượt. Mức <strong>84</strong> hứa thắng mọi lượt và có giá trị hai mark. Mỗi mức đặt phải cao hơn mức trước.</p><p>Nếu mọi người khác bỏ lượt, nhà cái phải đặt 30 (hoặc ván được chia lại nếu tắt tùy chọn bắt buộc đặt giá).</p>
+    </section>
+
+    <section class="card">
+      <h3>Át chủ</h3>
+      <p>Người đặt giá cao nhất chọn át chủ: số bất kỳ từ 0 đến 6, tất cả quân đôi, hoặc (nếu bật) không át chủ.</p>
+    </section>
+
+    <section class="card">
+      <h3>Chơi một lượt</h3>
+      <ul><li>Người thắng mức đặt đánh trước; sau đó, người thắng mỗi lượt sẽ đánh trước.</li><li>Một quân thuộc về đầu số lớn hơn của nó (quân 6-2 là quân sáu). Quân đôi thuộc về chính số của nó. Mọi quân chứa số át chủ đều là át chủ.</li><li>Quân đánh đầu quyết định bộ. Bạn phải đánh theo bộ nếu có thể; nếu không, bạn được đánh bất kỳ quân nào, kể cả át chủ.</li><li>Át chủ cao nhất thắng lượt; nếu không có át chủ, quân cao nhất của bộ được đánh sẽ thắng. Quân đôi cao nhất trong bộ của nó.</li></ul>
+    </section>
+
+    <section class="card">
+      <h3>Tính điểm ván</h3>
+      <p>Đội của bạn được điểm từ mỗi lượt thắng. Nếu đội đặt giá đạt mức đặt, đội nhận số mark của mức đó (một mark, hoặc hai với 84). Nếu không đạt, đội bị <strong>set</strong> và đội kia nhận số mark ấy.</p>
+    </section>
+
+    <section class="card">
+      <h3>Chơi trên một thiết bị</h3>
+      <p>Bạn có thể kết hợp người chơi và robot trong phần Thiết lập. Khi có hơn một người chơi, trò chơi sẽ nhắc bạn chuyển thiết bị trước lượt của mỗi người để giữ bài riêng tư.</p>
+    </section>
+
+    <p class="footer">&copy; 2026 T-G-Apps LLC. Bảo lưu mọi quyền.</p>
+
+  </div>
+</body>
+</html>
